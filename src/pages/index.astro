@@ -1,11 +1,1622 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+  <!-- Navigation -->
+  <header class="nav-header">
+    <div class="container nav-inner">
+      <a href="/" class="logo">
+        <span class="logo-mark">C</span>
+        <span class="logo-name">CareerFutura</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#process">How It Works</a>
+        <a href="#results">Results</a>
+        <a href="#testimonials">Testimonials</a>
+      </nav>
+      <a href="#contact" class="nav-cta">Book a Session</a>
+      <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <span class="hero-badge">India's Largest Career Counselling Company</span>
+        <h1 class="hero-title">
+          The right career starts with <span class="serif highlight-text">right planning</span>
+        </h1>
+        <p class="hero-subtitle">
+          Scientifically designed assessments, personalized guidance reports, and one-on-one expert counselling for students from 8th standard to working professionals.
+        </p>
+        <div class="hero-actions">
+          <a href="#programs" class="btn-solid">Explore Programs</a>
+          <a href="#process" class="btn-outline">See How It Works</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-avatars">
+            <img src="/images/home-testmonial-1.jpg" alt="Student" loading="lazy" />
+            <img src="/images/home-testmonial-2.jpg" alt="Student" loading="lazy" />
+            <img src="/images/home-testmonial-3.jpg" alt="Student" loading="lazy" />
+            <img src="/images/home-testmonial-4.jpg" alt="Student" loading="lazy" />
+          </div>
+          <p><strong>50,000+</strong> students & parents trust us</p>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-img-main">
+          <img src="/images/student-1.jpg" alt="Confident student planning their career" loading="eager" />
+        </div>
+        <div class="hero-floating-card card-top">
+          <span class="card-icon">🎯</span>
+          <div>
+            <strong>240+</strong>
+            <span>Centers across India</span>
+          </div>
+        </div>
+        <div class="hero-floating-card card-bottom">
+          <span class="card-icon">📊</span>
+          <div>
+            <strong>25,000+</strong>
+            <span>Career options mapped</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Stats Bar -->
+  <section id="about" class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">1M+</span>
+          <span class="stat-label">Students Benefitted</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">7+</span>
+          <span class="stat-label">Years in Education</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">240+</span>
+          <span class="stat-label">Centers Nationwide</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">25K+</span>
+          <span class="stat-label">Courses & Colleges</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <div class="container about-grid">
+      <div class="about-images">
+        <div class="about-img-primary">
+          <img src="/images/instructor.jpg" alt="Career counsellor in session" loading="lazy" />
+        </div>
+        <div class="about-img-secondary">
+          <img src="/images/home-img-cap-2.jpg" alt="Students in workshop" loading="lazy" />
+        </div>
+      </div>
+      <div class="about-content">
+        <span class="section-label">About CareerFutura</span>
+        <h2 class="section-heading">We don't just guide careers. <span class="serif">We build futures.</span></h2>
+        <p class="about-text">
+          From the makers of way2k.com — India's leading education platform with PAN India information about colleges and courses — CareerFutura brings together career experts, psychologists, and IITians to create scientifically designed assessments that map students to their ideal career paths.
+        </p>
+        <div class="about-features">
+          <div class="about-feature">
+            <span class="feature-check">✓</span>
+            <span>Scientifically designed Career & Study assessment tests</span>
+          </div>
+          <div class="about-feature">
+            <span class="feature-check">✓</span>
+            <span>Self-explanatory personalized career guidance reports</span>
+          </div>
+          <div class="about-feature">
+            <span class="feature-check">✓</span>
+            <span>India's best career experts team for one-on-one counselling</span>
+          </div>
+          <div class="about-feature">
+            <span class="feature-check">✓</span>
+            <span>50,000+ satisfied parents & students nationwide</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section id="programs" class="programs-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Our Programs</span>
+        <h2 class="section-heading">Tailored guidance for <span class="serif">every stage</span></h2>
+        <p class="section-desc">Whether you're choosing a stream after 10th or switching careers as a professional — we have a program designed specifically for your stage.</p>
+      </div>
+      <div class="programs-grid">
+        <div class="program-card program-featured">
+          <div class="program-tag">Most Popular</div>
+          <div class="program-header">
+            <span class="program-grade">10th Std</span>
+            <h3>Stream Locator</h3>
+          </div>
+          <p class="program-desc">Decide the right stream and subject group with confidence.</p>
+          <ul class="program-list">
+            <li>Recommended stream with subject group</li>
+            <li>Aspiration fitment analysis</li>
+            <li>Core potential & improvement areas</li>
+            <li>Study habit improvements</li>
+            <li>Personalized career guidance</li>
+          </ul>
+          <a href="#contact" class="program-cta">Get Started →</a>
+        </div>
+        <div class="program-card">
+          <div class="program-header">
+            <span class="program-grade">8th / 9th Std</span>
+            <h3>Career Foundation</h3>
+          </div>
+          <p class="program-desc">Build a strong foundation early.</p>
+          <ul class="program-list">
+            <li>Core potential assessment</li>
+            <li>Study habits analysis</li>
+            <li>Relation adjustments guidance</li>
+          </ul>
+          <a href="#contact" class="program-cta">Learn More →</a>
+        </div>
+        <div class="program-card">
+          <div class="program-header">
+            <span class="program-grade">11th / 12th Std</span>
+            <h3>Career, Course & College Locator</h3>
+          </div>
+          <p class="program-desc">Find the right career, course, and college.</p>
+          <ul class="program-list">
+            <li>Aspiration fitment analysis</li>
+            <li>Core potential & improvement areas</li>
+            <li>Study habit improvements</li>
+            <li>Personalized career guidance</li>
+          </ul>
+          <a href="#contact" class="program-cta">Learn More →</a>
+        </div>
+        <div class="program-card">
+          <div class="program-header">
+            <span class="program-grade">Graduation</span>
+            <h3>Career Path Locator</h3>
+          </div>
+          <p class="program-desc">PG, MBA, Job, or Entrance — find your path.</p>
+          <ul class="program-list">
+            <li>Recommended specialized career & course</li>
+            <li>Aspiration fitment analysis</li>
+            <li>Job skills improvements</li>
+            <li>Personalized career guidance</li>
+          </ul>
+          <a href="#contact" class="program-cta">Learn More →</a>
+        </div>
+        <div class="program-card">
+          <div class="program-header">
+            <span class="program-grade">Professional</span>
+            <h3>Career Switch / Enhancement</h3>
+          </div>
+          <p class="program-desc">Advance or pivot your professional career.</p>
+          <ul class="program-list">
+            <li>Potential & personality analysis</li>
+            <li>Strength & improvement areas</li>
+            <li>Sector & profile fitment</li>
+            <li>Personalized guidance for advancement</li>
+          </ul>
+          <a href="#contact" class="program-cta">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="process-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">How It Works</span>
+        <h2 class="section-heading">3 simple steps to <span class="serif">career clarity</span></h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="process-number">01</div>
+          <div class="process-img">
+            <img src="/images/home-img-cap-4.jpg" alt="Student taking assessment" loading="lazy" />
+          </div>
+          <h3>Take the Assessment</h3>
+          <p>Complete our scientifically designed career and study assessment test that evaluates your potential, interests, aptitude, and personality traits.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-number">02</div>
+          <div class="process-img">
+            <img src="/images/instructor-2.jpg" alt="Career guidance report" loading="lazy" />
+          </div>
+          <h3>Get Your Report</h3>
+          <p>Receive a comprehensive, personalized career guidance report with in-depth analysis covering all critical areas — from strengths to career recommendations.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-number">03</div>
+          <div class="process-img">
+            <img src="/images/women.jpg" alt="Expert counselling session" loading="lazy" />
+          </div>
+          <h3>Expert Counselling</h3>
+          <p>Sit down with India's best career experts who guide you through your report findings and solve all your career-related queries personally.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results / Achievements Section -->
+  <section id="results" class="results-section">
+    <div class="container results-grid">
+      <div class="results-content">
+        <span class="section-label">Our Impact</span>
+        <h2 class="section-heading">Trusted by schools and families <span class="serif">across India</span></h2>
+        <p class="results-text">We partner with leading educational institutions and foundations to make career guidance accessible to every student.</p>
+        <div class="results-logos">
+          <div class="client-badge">Aga Khan Foundation</div>
+          <div class="client-badge">Credila</div>
+          <div class="client-badge">The Peepal Grove School</div>
+          <div class="client-badge">Vapi Public School</div>
+          <div class="client-badge">Lila Poonawalla Foundation</div>
+          <div class="client-badge">askIITians</div>
+        </div>
+      </div>
+      <div class="results-visual">
+        <div class="results-card">
+          <img src="/images/man.jpg" alt="Career expert" loading="lazy" />
+          <div class="results-overlay">
+            <div class="result-stat">
+              <strong>600+</strong>
+              <span>Schools Partnered</span>
+            </div>
+            <div class="result-stat">
+              <strong>25+</strong>
+              <span>States Covered</span>
+            </div>
+          </div>
+        </div>
+        <div class="awards-row">
+          <img src="/images/award-1.webp" alt="Award" loading="lazy" class="award-img" />
+          <img src="/images/award-2.webp" alt="Award" loading="lazy" class="award-img" />
+          <img src="/images/award-3.webp" alt="Award" loading="lazy" class="award-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section (For Schools) -->
+  <section class="benefits-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">For Schools & Counselors</span>
+        <h2 class="section-heading">A complete career guidance <span class="serif">ecosystem</span></h2>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-block">
+          <h3>For Schools</h3>
+          <ul>
+            <li>
+              <span class="benefit-icon">📈</span>
+              <div>
+                <strong>Better Academic Results</strong>
+                <p>When students have career clarity, academic motivation follows naturally.</p>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">🎓</span>
+              <div>
+                <strong>Balanced Student Development</strong>
+                <p>Comprehensive assessments identify areas beyond academics for holistic growth.</p>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">🏅</span>
+              <div>
+                <strong>Enhanced Brand Image</strong>
+                <p>Position your school as a forward-thinking institution through value-driven career activities.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="benefit-block">
+          <h3>For School Counselors</h3>
+          <ul>
+            <li>
+              <span class="benefit-icon">🎯</span>
+              <div>
+                <strong>Career Guidance Tool</strong>
+                <p>Scientifically measure each student's inherent abilities and aptitude.</p>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">🧠</span>
+              <div>
+                <strong>Counseling Tool</strong>
+                <p>Data-driven insights to address and solve student behavior issues effectively.</p>
+              </div>
+            </li>
+            <li>
+              <span class="benefit-icon">📋</span>
+              <div>
+                <strong>Administrative Tool</strong>
+                <p>Maintain detailed student profiles and analyze progress over time.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Student Stories</span>
+        <h2 class="section-heading">Hear from those who <span class="serif">found their path</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card testimonial-featured">
+          <div class="testimonial-content">
+            <p>"Thank you Careerfutura for the best advice. I am now feeling more confident and sure about my career path. The assessment was eye-opening."</p>
+          </div>
+          <div class="testimonial-footer">
+            <img src="/images/home-testmonial-1.jpg" alt="Pinak Naresh Joshi" loading="lazy" />
+            <div>
+              <strong>Pinak Naresh Joshi</strong>
+              <span>10th Std, Pune, Maharashtra</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"The report gives clear and thoughtful recommendations about various career options best suited to my abilities and interests. I will recommend Careerfutura to others."</p>
+          </div>
+          <div class="testimonial-footer">
+            <img src="/images/home-testmonial-2.jpg" alt="Sanjana Ashit Shah" loading="lazy" />
+            <div>
+              <strong>Sanjana Ashit Shah</strong>
+              <span>11th Std, Pune, Maharashtra</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"Careerfutura has unique and professional programs for students. It helps them map their career effectively and choose the best suited path."</p>
+          </div>
+          <div class="testimonial-footer">
+            <img src="/images/home-testmonial-5.jpg" alt="Principal, Vapi Public School" loading="lazy" />
+            <div>
+              <strong>Principal</strong>
+              <span>Vapi Public School</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials Section -->
+  <section class="credentials-section">
+    <div class="container">
+      <div class="credentials-inner">
+        <div class="credentials-text">
+          <span class="section-label">Our Credentials</span>
+          <h2 class="section-heading">Assessments designed by <span class="serif">India's best minds</span></h2>
+          <p>Our tests are created by a multidisciplinary team of renowned experts ensuring scientific rigor and practical relevance.</p>
+        </div>
+        <div class="credentials-grid">
+          <div class="credential-card">
+            <span class="credential-emoji">🎯</span>
+            <strong>Career Experts</strong>
+            <p>Decades of career counselling experience</p>
+          </div>
+          <div class="credential-card">
+            <span class="credential-emoji">🏭</span>
+            <strong>Industry Experts</strong>
+            <p>Real-world industry knowledge and hiring insights</p>
+          </div>
+          <div class="credential-card">
+            <span class="credential-emoji">🧠</span>
+            <strong>Psychologists</strong>
+            <p>Scientific assessment design and behavioral analysis</p>
+          </div>
+          <div class="credential-card">
+            <span class="credential-emoji">🎓</span>
+            <strong>IITians</strong>
+            <p>Analytical rigor and academic excellence</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container cta-inner">
+      <h2 class="serif">Ready to discover your ideal career path?</h2>
+      <p>Take the first step today. Our experts are ready to guide you.</p>
+      <div class="cta-actions">
+        <a href="#contact" class="btn-solid btn-large">Book a Free Session</a>
+        <a href="tel:+919999999999" class="btn-ghost">Or call us directly</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo footer-logo">
+          <span class="logo-mark">C</span>
+          <span class="logo-name">CareerFutura</span>
+        </a>
+        <p class="footer-desc">India's largest career counselling company. From the makers of way2k.com.</p>
+        <p class="footer-tagline">"The first step towards a successful and bright career begins with right planning."</p>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <a href="#programs">8th/9th Std</a>
+        <a href="#programs">10th Std Stream Locator</a>
+        <a href="#programs">11th/12th Career Locator</a>
+        <a href="#programs">Graduation Path</a>
+        <a href="#programs">Professional Switch</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#about">About Us</a>
+        <a href="#results">Our Impact</a>
+        <a href="#testimonials">Student Stories</a>
+        <a href="https://way2k.com" target="_blank" rel="noopener">way2k.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get Started</h4>
+        <a href="#contact">Book a Session</a>
+        <a href="https://careerfutura.com" target="_blank" rel="noopener">careerfutura.com</a>
+        <p class="footer-note">Available at 240+ centers across India</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2024 CareerFutura. All rights reserved.</p>
+        <p>Made with purpose for India's students.</p>
+      </div>
+    </div>
+  </footer>
 </Layout>
+
+<style>
+  /* ===== Navigation ===== */
+  .nav-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 16px 0;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-mark {
+    width: 34px;
+    height: 34px;
+    background: #f5c518;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #1a1a1a;
+  }
+
+  .logo-name {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #1a1a1a;
+  }
+
+  .desktop-nav {
+    display: flex;
+    gap: 32px;
+  }
+
+  .desktop-nav a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #555;
+    transition: color 0.2s;
+  }
+
+  .desktop-nav a:hover {
+    color: #1a1a1a;
+  }
+
+  .nav-cta {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    background: #f5c518;
+    padding: 10px 22px;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .nav-cta:hover {
+    background: #e0b000;
+    transform: translateY(-1px);
+  }
+
+  .mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .mobile-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #1a1a1a;
+    border-radius: 2px;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: 140px 0 80px;
+    background: linear-gradient(135deg, #fffef5 0%, #fff9e0 100%);
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(245, 197, 24, 0.15);
+    color: #996b00;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+  }
+
+  .highlight-text {
+    color: #b8860b;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 500px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .btn-solid {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 28px;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+
+  .btn-solid:hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 28px;
+    border: 2px solid #ddd;
+    color: #1a1a1a;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover {
+    border-color: #f5c518;
+    background: rgba(245, 197, 24, 0.05);
+  }
+
+  .hero-trust {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .trust-avatars {
+    display: flex;
+  }
+
+  .trust-avatars img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    object-fit: cover;
+    margin-left: -8px;
+  }
+
+  .trust-avatars img:first-child {
+    margin-left: 0;
+  }
+
+  .hero-trust p {
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .hero-trust p strong {
+    color: #1a1a1a;
+  }
+
+  .hero-visual {
+    position: relative;
+  }
+
+  .hero-img-main {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+  }
+
+  .hero-img-main img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+  }
+
+  .hero-floating-card {
+    position: absolute;
+    background: white;
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .card-top {
+    top: 20px;
+    left: -40px;
+  }
+
+  .card-bottom {
+    bottom: 40px;
+    right: -20px;
+    animation-delay: 1.5s;
+  }
+
+  .card-icon {
+    font-size: 1.4rem;
+  }
+
+  .hero-floating-card strong {
+    display: block;
+    font-size: 1.1rem;
+    color: #1a1a1a;
+  }
+
+  .hero-floating-card span {
+    font-size: 0.75rem;
+    color: #888;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ===== Stats Bar ===== */
+  .stats-bar {
+    background: #1a1a1a;
+    padding: 40px 0;
+  }
+
+  .stats-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #f5c518;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-top: 4px;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  /* ===== About ===== */
+  .about-section {
+    padding: 100px 0;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .about-images {
+    position: relative;
+  }
+
+  .about-img-primary {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  }
+
+  .about-img-primary img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+
+  .about-img-secondary {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 180px;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 5px solid white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .about-img-secondary img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #b8860b;
+    margin-bottom: 12px;
+  }
+
+  .section-heading {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+  }
+
+  .about-text {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 28px;
+  }
+
+  .about-features {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .about-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: #333;
+  }
+
+  .feature-check {
+    color: #f5c518;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ===== Programs ===== */
+  .programs-section {
+    padding: 100px 0;
+    background: #fafafa;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 50px;
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .program-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px 28px;
+    border: 1px solid #eee;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .program-card:hover {
+    border-color: #f5c518;
+    box-shadow: 0 12px 40px rgba(245, 197, 24, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .program-featured {
+    border-color: #f5c518;
+    background: linear-gradient(180deg, #fffef5 0%, white 100%);
+  }
+
+  .program-tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #f5c518;
+    color: #1a1a1a;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .program-header {
+    margin-bottom: 12px;
+  }
+
+  .program-grade {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #b8860b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .program-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-top: 6px;
+  }
+
+  .program-desc {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 18px;
+  }
+
+  .program-list {
+    margin-bottom: 20px;
+  }
+
+  .program-list li {
+    font-size: 0.85rem;
+    color: #555;
+    padding: 6px 0;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .program-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f5c518;
+  }
+
+  .program-cta {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #b8860b;
+    transition: color 0.2s;
+  }
+
+  .program-cta:hover {
+    color: #1a1a1a;
+  }
+
+  /* ===== Process ===== */
+  .process-section {
+    padding: 100px 0;
+    background: white;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .process-step {
+    position: relative;
+  }
+
+  .process-number {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(245, 197, 24, 0.2);
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .process-img {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    height: 200px;
+  }
+
+  .process-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .process-step h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+  }
+
+  .process-step p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  /* ===== Results / Impact ===== */
+  .results-section {
+    padding: 100px 0;
+    background: #fafafa;
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .results-text {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 30px;
+  }
+
+  .results-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .client-badge {
+    background: white;
+    border: 1px solid #e5e5e5;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #444;
+    transition: all 0.2s;
+  }
+
+  .client-badge:hover {
+    border-color: #f5c518;
+    background: #fffef5;
+  }
+
+  .results-visual {
+    position: relative;
+  }
+
+  .results-card {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .results-card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+  }
+
+  .results-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 40px 30px 30px;
+    display: flex;
+    gap: 30px;
+  }
+
+  .result-stat strong {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #f5c518;
+  }
+
+  .result-stat span {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .awards-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+    justify-content: center;
+  }
+
+  .award-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: white;
+    padding: 8px;
+    border: 1px solid #eee;
+  }
+
+  /* ===== Benefits ===== */
+  .benefits-section {
+    padding: 100px 0;
+    background: white;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .benefit-block {
+    background: #fafafa;
+    border-radius: 16px;
+    padding: 36px 32px;
+    border: 1px solid #eee;
+  }
+
+  .benefit-block h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f5c518;
+  }
+
+  .benefit-block li {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    align-items: flex-start;
+  }
+
+  .benefit-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .benefit-block li strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+
+  .benefit-block li p {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ===== Testimonials ===== */
+  .testimonials-section {
+    padding: 100px 0;
+    background: #1a1a1a;
+  }
+
+  .testimonials-section .section-label {
+    color: #f5c518;
+  }
+
+  .testimonials-section .section-heading {
+    color: white;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .testimonial-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
+
+  .testimonial-card:hover {
+    border-color: rgba(245, 197, 24, 0.3);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .testimonial-featured {
+    border-color: rgba(245, 197, 24, 0.2);
+    background: rgba(245, 197, 24, 0.04);
+  }
+
+  .testimonial-content p {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+
+  .testimonial-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .testimonial-footer img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(245, 197, 24, 0.3);
+  }
+
+  .testimonial-footer strong {
+    display: block;
+    font-size: 0.9rem;
+    color: #f5c518;
+  }
+
+  .testimonial-footer span {
+    font-size: 0.75rem;
+    color: #888;
+  }
+
+  /* ===== Credentials ===== */
+  .credentials-section {
+    padding: 100px 0;
+    background: #fffef5;
+  }
+
+  .credentials-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .credentials-text p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-top: 12px;
+  }
+
+  .credentials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .credential-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+    border: 1px solid #eee;
+    transition: all 0.2s;
+  }
+
+  .credential-card:hover {
+    border-color: #f5c518;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(245, 197, 24, 0.1);
+  }
+
+  .credential-emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .credential-card strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+
+  .credential-card p {
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f5c518 0%, #e0a800 100%);
+  }
+
+  .cta-inner {
+    text-align: center;
+  }
+
+  .cta-inner h2 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+  }
+
+  .cta-inner p {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 32px;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-large {
+    padding: 16px 36px;
+    font-size: 1.05rem;
+  }
+
+  .btn-ghost {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .btn-ghost:hover {
+    color: #1a1a1a;
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    background: #111;
+    padding: 70px 0 0;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 50px;
+  }
+
+  .footer-logo .logo-mark {
+    background: #f5c518;
+  }
+
+  .footer-logo .logo-name {
+    color: white;
+  }
+
+  .footer-desc {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  .footer-tagline {
+    font-size: 0.82rem;
+    color: #666;
+    font-style: italic;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  .footer-col h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+  }
+
+  .footer-col a {
+    display: block;
+    font-size: 0.88rem;
+    color: #888;
+    padding: 5px 0;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover {
+    color: #f5c518;
+  }
+
+  .footer-note {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 20px 0;
+  }
+
+  .footer-bottom-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    font-size: 0.8rem;
+    color: #555;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-visual {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .about-images {
+      max-width: 500px;
+    }
+
+    .section-heading {
+      font-size: 2rem;
+    }
+
+    .results-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .credentials-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .desktop-nav {
+      display: none;
+    }
+
+    .nav-cta {
+      display: none;
+    }
+
+    .mobile-toggle {
+      display: flex;
+    }
+
+    .hero {
+      padding: 120px 0 60px;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-floating-card {
+      display: none;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .stat-divider {
+      display: none;
+    }
+
+    .process-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .programs-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-inner h2 {
+      font-size: 1.8rem;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .footer-bottom-inner {
+      flex-direction: column;
+      gap: 6px;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 1.7rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+    }
+
+    .btn-solid, .btn-outline {
+      text-align: center;
+      justify-content: center;
+    }
+
+    .hero-img-main img {
+      height: 300px;
+    }
+
+    .about-img-secondary {
+      display: none;
+    }
+
+    .credentials-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
