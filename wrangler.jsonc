@@ -1,0 +1,13 @@
+{
+ "$schema": "./node_modules/wrangler/config-schema.json",
+ "name": "pragnya-consultancy",
+ "compatibility_date": "2026-07-06",
+ "pages_build_output_dir": "./dist",
+ "d1_databases": [
+ {
+ "binding": "DB",
+ "database_name": "pragnya-consultancy-leads",
+ "database_id": "5326bebc-bc1c-4faa-83ff-3726d5af13ec"
+ }
+ ]
+}
