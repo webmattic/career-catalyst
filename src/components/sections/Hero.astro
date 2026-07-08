@@ -1,0 +1,30 @@
+---
+import '../../styles/hero.css';
+
+const webinarHref = '#webinar-form';
+const packagesHref = '#packages';
+---
+
+<section id="webinar" class="hero-section">
+  <div class="container hero-card">
+    <div class="hero-copy">
+      <p class="label">For Mumbai Class 8-10 parents</p>
+      <h1>Class 8-10 Stream Clarity Webinar</h1>
+      <p class="hero-lede">
+        Choose the right stream with expert aptitude and personality guidance. Only Rs.99.
+      </p>
+      <div class="hero-actions">
+        <a href={webinarHref} class="button button-gold">Reserve My Seat for Rs.99</a>
+        <a href={packagesHref} class="button button-ghost">Compare full assessment packages</a>
+      </div>
+      <div class="trust-line" aria-label="Webinar trust signals">
+        <span>Live expert focused webinar</span>
+        <span>Psychometric assessment pathway</span>
+        <span>Parent-student clarity first</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="/images/webinar-3.png" alt="Parent and student attending a stream clarity webinar" loading="eager" />
+    </div>
+  </div>
+</section>

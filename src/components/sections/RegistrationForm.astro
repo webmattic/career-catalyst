@@ -1,0 +1,28 @@
+---
+import '../../styles/registration.css';
+---
+
+<section id="webinar-form" class="registration-section section-pad">
+  <div class="container registration-panel">
+    <div class="registration-copy">
+      <p class="label gold">Reserve your webinar seat</p>
+      <h2>Start with the Rs.99 parent session.</h2>
+      <p>Share the minimum details needed for our team to send webinar registration and payment instructions.</p>
+    </div>
+    <form class="lead-form" action="/api/leads" method="post">
+      <input name="source" type="hidden" value="pragnya-webinar-landing-page" />
+      <input name="parent_name" type="text" autocomplete="name" placeholder="Parent's Name" required />
+      <input name="email" type="email" autocomplete="email" placeholder="Parent's Email" required />
+      <input name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="Active WhatsApp Number" required />
+      <input name="child_name" type="text" placeholder="Child's Name" required />
+      <select name="class" required>
+        <option value="">Child's Class</option>
+        <option>Class 8</option>
+        <option>Class 9</option>
+        <option>Class 10</option>
+      </select>
+      <button type="submit" class="button button-gold">Reserve My Seat for Rs.99</button>
+      <p>Your contact details are used only for webinar and counselling follow-up.</p>
+    </form>
+  </div>
+</section>

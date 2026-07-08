@@ -1,0 +1,86 @@
+/* ---- Marketing Top Bar ---- */
+
+.marketing-top-bar {
+  position: relative;
+  z-index: 51;
+  background: var(--primary-container);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 500;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.top-bar-shell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.top-bar-left svg {
+  flex-shrink: 0;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  white-space: nowrap;
+}
+
+.top-bar-right a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary-muted);
+  transition: color 0.18s ease;
+}
+
+.top-bar-right a:hover {
+  color: var(--gold);
+}
+
+.top-bar-right svg {
+  flex-shrink: 0;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 820px) {
+  .top-bar-shell {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-height: auto;
+  }
+
+  .top-bar-right {
+    gap: 14px;
+    font-size: 0.74rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-bar-right {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .top-bar-left {
+    font-size: 0.76rem;
+  }
+}

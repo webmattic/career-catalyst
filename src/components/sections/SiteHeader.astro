@@ -1,0 +1,23 @@
+---
+import '../../styles/header.css';
+
+const webinarHref = '#webinar-form';
+const packagesHref = '#packages';
+---
+
+<header class="site-header">
+  <div class="container header-shell">
+    <a href="/" class="brand" aria-label="Pragnya Consultancy home">
+      <span class="brand-icon">P</span>
+      <span class="brand-text">Pragnya Consultancy</span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#webinar">Webinar</a>
+      <a href="#decision">Decision</a>
+      <a href="#expert">Expert</a>
+      <a href={packagesHref}>Packages</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href={webinarHref} class="nav-cta">Reserve My Seat for Rs.99</a>
+  </div>
+</header>

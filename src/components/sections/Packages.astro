@@ -1,0 +1,43 @@
+---
+import '../../styles/packages.css';
+
+const webinarHref = '#webinar-form';
+---
+
+<section id="packages" class="packages-section section-pad">
+  <div class="container">
+    <div class="section-heading centered">
+      <p class="label muted">After the webinar</p>
+      <h2>Upgrade only when the full assessment is right for you.</h2>
+    </div>
+    <div class="package-grid">
+      <article class="package-card">
+        <div class="package-price">
+          <span>Online report</span>
+          <strong>Rs.6,499</strong>
+        </div>
+        <h3>Test plus online report</h3>
+        <ul>
+          <li>Psychometric and aptitude assessment</li>
+          <li>Online report for stream and career direction</li>
+          <li>Aptitude, personality, interest, and study-style indicators</li>
+        </ul>
+        <a href={webinarHref} class="button button-outline">Start with Rs.99 webinar</a>
+      </article>
+      <article class="package-card package-featured">
+        <div class="package-tag">Recommended for families</div>
+        <div class="package-price">
+          <span>Report plus consultation</span>
+          <strong>Rs.8,499</strong>
+        </div>
+        <h3>Test, report and in-person expert session</h3>
+        <ul>
+          <li>Everything in the online report package</li>
+          <li>In-person consultation with Mehal Chhaya</li>
+          <li>Parent-student discussion around real options</li>
+        </ul>
+        <a href={webinarHref} class="button button-gold">Reserve My Seat for Rs.99</a>
+      </article>
+    </div>
+  </div>
+</section>

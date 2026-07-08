@@ -1,10 +1,12 @@
 ---
+import '../styles/base.css';
+
 interface Props {
   title?: string;
   description?: string;
 }
 
-const { title = "CareerFutura - India's Largest Career Counselling Company", description = "The first step towards a successful and bright career begins with right planning. Scientifically designed career assessment, personalized guidance reports, and expert counselling." } = Astro.props;
+const { title = "Pragnya Consultancy - Class 8-10 Stream Clarity Webinar", description = "A practical Rs.99 webinar for Mumbai parents who want to choose the right stream using aptitude, personality, interest, and learning-style signals." } = Astro.props;
 ---
 
 <!doctype html>
@@ -14,11 +16,12 @@ const { title = "CareerFutura - India's Largest Career Counselling Company", des
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
   <body>
@@ -26,60 +29,3 @@ const { title = "CareerFutura - India's Largest Career Counselling Company", des
   </body>
 </html>
 
-<style is:global>
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-  }
-
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #1a1a1a;
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  ul {
-    list-style: none;
-  }
-
-  .container {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .serif {
-    font-family: 'Playfair Display', serif;
-  }
-
-  @media (max-width: 768px) {
-    html {
-      font-size: 15px;
-    }
-    .container {
-      padding: 0 16px;
-    }
-  }
-</style>
