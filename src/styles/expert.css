@@ -16,7 +16,7 @@
 }
 
 .expert-credential {
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid var(--surface-border-strong);
   border-radius: 4px;
   background: var(--surface-low);
@@ -28,6 +28,18 @@
   height: auto;
   object-fit: contain;
   object-position: center;
+}
+
+.expert-contact {
+  margin: 0;
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--surface-border-strong);
+  background: #081d49;
+  color: #ffd65a;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .expert-copy {
@@ -60,5 +72,9 @@
 @media (max-width: 720px) {
   .expert-card {
     padding: 24px;
+  }
+
+  .expert-contact {
+    font-size: 0.95rem;
   }
 }
