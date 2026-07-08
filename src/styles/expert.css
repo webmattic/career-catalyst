@@ -23,10 +23,11 @@
 }
 
 .expert-credential img {
+  display: block;
   width: 100%;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
 }
 
 .expert-copy {
@@ -59,9 +60,5 @@
 @media (max-width: 720px) {
   .expert-card {
     padding: 24px;
-  }
-
-  .expert-credential img {
-    aspect-ratio: 3 / 4;
   }
 }
