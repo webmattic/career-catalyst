@@ -1,0 +1,57 @@
+/* ---- Value Section ---- */
+
+.value-section {
+  background: var(--surface);
+}
+
+.value-panel {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 48px;
+  max-width: 900px;
+  border-radius: 8px;
+  background: var(--primary-container);
+  color: #ffffff;
+  padding: 42px;
+}
+
+.value-panel h2 {
+  color: #ffffff;
+}
+
+.value-list {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.value-list li {
+  position: relative;
+  padding-left: 28px;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.value-list li::before {
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  content: "";
+}
+
+@media (max-width: 980px) {
+  .value-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .value-panel {
+    padding: 24px;
+  }
+}

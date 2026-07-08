@@ -1,0 +1,67 @@
+/* ---- Expert Section ---- */
+
+.expert-section {
+  background: #ffffff;
+  border-top: 1px solid var(--surface-border);
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.expert-card {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+  gap: 52px;
+  align-items: center;
+  max-width: 1000px;
+  padding: 40px;
+}
+
+.expert-credential {
+  overflow: hidden;
+  border: 1px solid var(--surface-border-strong);
+  border-radius: 4px;
+  background: var(--surface-low);
+}
+
+.expert-credential img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.expert-copy {
+  width: 100%;
+  min-width: 0;
+}
+
+.expert-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.expert-badges span {
+  border-radius: 999px;
+  background: var(--surface-border);
+  color: var(--text-muted);
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+@media (max-width: 980px) {
+  .expert-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .expert-card {
+    padding: 24px;
+  }
+
+  .expert-credential img {
+    aspect-ratio: 3 / 4;
+  }
+}
