@@ -1,0 +1,39 @@
+/* ---- Final CTA Section ---- */
+
+.final-cta-section {
+  background: var(--surface);
+}
+
+.final-cta-card {
+  max-width: 860px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.final-cta-card p {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.final-cta-card .button {
+  margin-top: 24px;
+}
+
+.final-cta-card span {
+  display: block;
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .final-cta-card {
+    padding: 28px 24px;
+  }
+
+  .final-cta-card .button {
+    width: 100%;
+  }
+}

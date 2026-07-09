@@ -6,7 +6,10 @@ interface Props {
   description?: string;
 }
 
-const { title = "Pragnya Consultancy - Class 8-10 Stream Clarity Webinar", description = "A practical Rs.99 webinar for Mumbai parents who want to choose the right stream using aptitude, personality, interest, and learning-style signals." } = Astro.props;
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? '';
+const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
+const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '';
+const { title = "Pragnya Consultancy - ₹99 Stream Clarity Webinar", description = "A practical ₹99 webinar for Mumbai parents who want to choose the right stream using aptitude, personality, interest, and learning-style signals." } = Astro.props;
 ---
 
 <!doctype html>
@@ -23,10 +26,86 @@ const { title = "Pragnya Consultancy - Class 8-10 Stream Clarity Webinar", descr
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="image" type="image/webp" href="/images/webinar-3.webp" />
     <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    {gtmId && (
+      <script is:inline define:vars={{ gtmId }}>
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js',
+        });
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
+        document.head.appendChild(script);
+      </script>
+    )}
+    {gaMeasurementId && (
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+    )}
+    {metaPixelId && (
+      <script is:inline define:vars={{ metaPixelId }}>
+        !(function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = true;
+          n.version = '2.0';
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = true;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+        })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        window.fbq('init', metaPixelId);
+        window.fbq('track', 'PageView');
+      </script>
+    )}
+    {gaMeasurementId && (
+      <script is:inline define:vars={{ gaMeasurementId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          window.dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', gaMeasurementId);
+      </script>
+    )}
     <title>{title}</title>
   </head>
   <body>
     <slot />
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.trackLandingEvent = function (eventName, detail = {}) {
+        const payload = { event: eventName, ...detail };
+        window.dataLayer.push(payload);
+
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', eventName, detail);
+        }
+
+        if (typeof window.fbq === 'function' && eventName !== 'PageView') {
+          window.fbq('trackCustom', eventName, detail);
+        }
+      };
+
+      window.trackLandingEvent('PageView', { page: 'webinar-landing' });
+
+      document.addEventListener('click', (event) => {
+        const trigger = event.target.closest('[data-track-event]');
+        if (!trigger) {
+          return;
+        }
+
+        window.trackLandingEvent(trigger.dataset.trackEvent, {
+          placement: trigger.dataset.trackPlacement || 'unknown',
+        });
+      });
+    </script>
   </body>
 </html>
-

@@ -2,31 +2,33 @@
 import '../../styles/hero.css';
 
 const webinarHref = '#webinar-form';
-const packagesHref = '#packages';
 ---
 
 <section id="webinar" class="hero-section">
   <div class="container hero-card">
     <div class="hero-copy">
-      <p class="label">For Mumbai Class 8-10 parents</p>
-      <h1>Class 8-10 Career Stream Clarity Webinar</h1>
+      <p class="label">For Mumbai Class 8–10 parents</p>
+      <h1>Confused Between Science, Commerce or Arts? Make the Right Stream Decision Before Class 10 Pressure Peaks.</h1>
       <p class="hero-lede">
-        Choose the right stream with expert aptitude and personality guidance. Only Rs.99.
+        A practical ₹99 live webinar for Mumbai parents to understand their child’s aptitude signals, personality fit,
+        study style and stream direction before choosing the wrong path under pressure.
       </p>
       <div class="hero-actions">
-        <a href={webinarHref} class="button button-gold">Reserve My Seat for Rs.99</a>
-        <a href={packagesHref} class="button button-ghost">Compare full assessment packages</a>
+        <a href={webinarHref} class="button button-gold" data-track-event="HeroCTA_Click" data-track-placement="hero">
+          Reserve My Parent Seat for ₹99
+        </a>
       </div>
+      <p class="hero-payment-note">Instant payment via UPI, GPay, PhonePe or card. Webinar link sent on WhatsApp after confirmation.</p>
       <div class="trust-line" aria-label="Webinar trust signals">
-        <span>Live expert focused webinar</span>
-        <span>Psychometric assessment pathway</span>
-        <span>Parent-student clarity first</span>
+        <span>Led by Mehal Chhaya</span>
+        <span>27+ years in education</span>
+        <span>Designed for Class 8–10 parents</span>
       </div>
     </div>
     <div class="hero-media">
       <picture>
         <source srcset="/images/webinar-3.webp" type="image/webp" />
-        <img src="/images/webinar-3.png" alt="Parent and student attending a stream clarity webinar" loading="eager" width="1200" height="900" fetchpriority="high" />
+        <img src="/images/webinar-3.png" alt="Parent and student attending a stream clarity webinar together" loading="eager" width="1200" height="900" fetchpriority="high" />
       </picture>
     </div>
   </div>

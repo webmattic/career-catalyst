@@ -1,0 +1,45 @@
+---
+import '../../styles/webinar-details.css';
+import { webinarConfig } from '../../data/webinar.js';
+---
+
+<section class="webinar-details-section">
+  <div class="container">
+    <div class="details-card">
+      <div class="details-copy">
+        <p class="label muted">Live webinar details</p>
+        <h2>Everything a parent needs before booking the ₹99 seat</h2>
+      </div>
+      <dl class="details-grid">
+        <div>
+          <dt>Date</dt>
+          <dd>{webinarConfig.dateLabel}</dd>
+        </div>
+        <div>
+          <dt>Time</dt>
+          <dd>{webinarConfig.timeLabel}</dd>
+        </div>
+        <div>
+          <dt>Duration</dt>
+          <dd>{webinarConfig.durationLabel}</dd>
+        </div>
+        <div>
+          <dt>Platform</dt>
+          <dd>{webinarConfig.platformLabel}</dd>
+        </div>
+        <div>
+          <dt>Fee</dt>
+          <dd>{webinarConfig.displayPrice} only</dd>
+        </div>
+        <div>
+          <dt>Who should attend</dt>
+          <dd>{webinarConfig.audienceLabel}</dd>
+        </div>
+      </dl>
+      <p class="details-note">
+        Your child may sit with you during the session, but the webinar is primarily designed for parents in the
+        Mumbai school context.
+      </p>
+    </div>
+  </div>
+</section>

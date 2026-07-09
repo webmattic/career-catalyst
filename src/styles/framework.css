@@ -4,6 +4,11 @@
   background: var(--surface);
 }
 
+.framework-close {
+  color: var(--primary);
+  font-weight: 700;
+}
+
 .pillar-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

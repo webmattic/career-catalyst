@@ -14,7 +14,14 @@
   background: var(--gold);
   color: var(--gold-dark);
   font-weight: 900;
+  text-align: center;
   box-shadow: 0 -4px 20px rgba(0, 31, 63, 0.16);
+}
+
+@media (max-width: 380px) {
+  .mobile-sticky-cta {
+    font-size: 0.86rem;
+  }
 }
 
 @media (max-width: 720px) {

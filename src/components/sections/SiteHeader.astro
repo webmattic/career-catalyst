@@ -2,7 +2,6 @@
 import '../../styles/header.css';
 
 const webinarHref = '#webinar-form';
-const packagesHref = '#packages';
 ---
 
 <header class="site-header">
@@ -13,11 +12,11 @@ const packagesHref = '#packages';
     </a>
     <nav class="site-nav" aria-label="Main navigation">
       <a href="#webinar">Webinar</a>
-      <a href="#decision">Decision</a>
+      <a href="#framework">Framework</a>
+      <a href="#outcomes">Outcomes</a>
       <a href="#expert">Expert</a>
-      <a href={packagesHref}>Packages</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a href={webinarHref} class="nav-cta">Reserve My Seat for Rs.99</a>
+    <a href={webinarHref} class="nav-cta" data-track-event="HeroCTA_Click" data-track-placement="header">Reserve My Parent Seat for ₹99</a>
   </div>
 </header>

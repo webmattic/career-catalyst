@@ -3,3 +3,26 @@
 .decision-section {
   background: var(--surface);
 }
+
+.decision-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.decision-list li {
+  position: relative;
+  padding-left: 24px;
+  color: var(--text-muted);
+}
+
+.decision-list li::before {
+  position: absolute;
+  left: 0;
+  top: 0.42em;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  content: "";
+}

@@ -246,11 +246,37 @@ p {
 .feature-card,
 .pillar-card,
 .expert-card,
+.details-card,
+.why-now-card,
+.final-cta-card,
 .package-card,
 details {
   border: 1px solid var(--surface-border-strong);
   border-radius: 8px;
   background: var(--surface-card);
+}
+
+.bullet-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.bullet-list li {
+  position: relative;
+  padding-left: 24px;
+  color: var(--text-muted);
+}
+
+.bullet-list li::before {
+  position: absolute;
+  left: 0;
+  top: 0.4em;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  content: "";
 }
 
 /* ---- Responsive ---- */

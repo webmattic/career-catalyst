@@ -1,5 +1,6 @@
 ---
 import '../../styles/faq.css';
+import { webinarFaqs } from '../../data/webinar.js';
 ---
 
 <section id="faq" class="faq-section section-pad">
@@ -9,22 +10,12 @@ import '../../styles/faq.css';
       <h2>Before you reserve your seat</h2>
     </div>
     <div class="faq-list">
-      <details>
-        <summary>Is Class 8 too early for career guidance?</summary>
-        <p>Class 8 is ideal for foundational understanding before the pressure of board exams begins. It helps parents and students observe aptitudes calmly.</p>
-      </details>
-      <details>
-        <summary>Can an assessment decide my child's future?</summary>
-        <p>No assessment makes a final decision. It provides structured inputs that guide discussions and highlight natural strengths.</p>
-      </details>
-      <details>
-        <summary>Why is the webinar priced at Rs.99?</summary>
-        <p>The minimal fee keeps the session focused on committed parents while keeping the first step accessible.</p>
-      </details>
-      <details>
-        <summary>What happens after the webinar?</summary>
-        <p>You can stop at the webinar, ask follow-up questions, or upgrade to the Rs.6,499 report package or Rs.8,499 consultation package.</p>
-      </details>
+      {webinarFaqs.map((item) => (
+        <details>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
     </div>
   </div>
 </section>

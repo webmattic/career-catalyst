@@ -27,7 +27,6 @@
   color: var(--gold);
   font-weight: 700;
   font-size: 0.82rem;
-  white-space: nowrap;
 }
 
 .top-bar-left svg {
@@ -82,5 +81,6 @@
 
   .top-bar-left {
     font-size: 0.76rem;
+    text-align: center;
   }
 }

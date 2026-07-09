@@ -1,28 +1,229 @@
 ---
 import '../../styles/registration.css';
+import { biggestConcernOptions, webinarConfig } from '../../data/webinar.js';
+
+const submitCopy = 'Continue to Secure Payment';
+const paymentEnabledCopy = 'Pay securely via UPI, GPay, PhonePe, card or net banking. Your Google Meet link will be sent on WhatsApp after successful payment.';
+const fallbackCopy =
+  'Your details have been saved. We will share the payment link on WhatsApp once checkout is enabled for this session.';
+const confirmedCopy =
+  'Your payment is captured. Your webinar seat is confirmed for 19th July at 4:00 PM. The Google Meet link will be shared on WhatsApp after payment processing completes.';
 ---
 
 <section id="webinar-form" class="registration-section section-pad">
   <div class="container registration-panel">
     <div class="registration-copy">
-      <p class="label gold">Reserve your webinar seat</p>
-      <h2>Start with the Rs.99 parent session.</h2>
-      <p>Share the minimum details needed for our team to send webinar registration and payment instructions.</p>
+      <p class="label gold">Reserve your ₹99 webinar seat</p>
+      <h2>Enter your details and continue to secure payment.</h2>
+      <p>
+        We save your registration before checkout so your seat can be recovered if payment is interrupted. The webinar
+        link is shared after successful payment.
+      </p>
+      <div class="registration-highlights">
+        <span>{webinarConfig.dateLabel}</span>
+        <span>{webinarConfig.timeLabel}</span>
+        <span>{webinarConfig.platformLabel}</span>
+      </div>
     </div>
-    <form class="lead-form" action="/api/leads" method="post">
-      <input name="source" type="hidden" value="pragnya-webinar-landing-page" />
-      <input name="parent_name" type="text" autocomplete="name" placeholder="Parent's Name" required />
-      <input name="email" type="email" autocomplete="email" placeholder="Parent's Email" required />
-      <input name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="Active WhatsApp Number" required />
-      <input name="child_name" type="text" placeholder="Child's Name" required />
+    <form class="lead-form" data-webinar-form novalidate>
+      <input name="source" type="hidden" value={webinarConfig.registrationSource} />
+      <input name="parent_name" type="text" autocomplete="name" placeholder="Parent Name" required />
+      <input name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel" placeholder="WhatsApp Number" pattern="[6-9][0-9]{9}" required />
+      <input name="email" type="email" autocomplete="email" placeholder="Email Address" required />
       <select name="class" required>
         <option value="">Child's Class</option>
         <option>Class 8</option>
         <option>Class 9</option>
         <option>Class 10</option>
       </select>
-      <button type="submit" class="button button-gold">Reserve My Seat for Rs.99</button>
-      <p>Your contact details are used only for webinar and counselling follow-up.</p>
+      <input name="area_locality" type="text" autocomplete="address-level2" placeholder="Area / Locality in Mumbai" required />
+      <select name="biggest_concern">
+        <option value="">Biggest concern right now (optional)</option>
+        {biggestConcernOptions.map((option) => (
+          <option value={option}>{option}</option>
+        ))}
+      </select>
+      <button type="submit" class="button button-gold" data-submit-button data-default-label={submitCopy}>
+        {submitCopy}
+      </button>
+      <p class="lead-form-note">{paymentEnabledCopy}</p>
+      <p class="lead-form-privacy">
+        We will use your details only for webinar confirmation, reminders and career guidance communication.
+      </p>
+      <div class="form-status" data-form-status hidden aria-live="polite"></div>
     </form>
   </div>
 </section>
+
+<script is:inline define:vars={{ submitCopy, fallbackCopy, confirmedCopy }}>
+  const form = document.querySelector('[data-webinar-form]');
+  const statusBox = form?.querySelector('[data-form-status]');
+  const submitButton = form?.querySelector('[data-submit-button]');
+
+  const setStatus = (state, message) => {
+    if (!statusBox) {
+      return;
+    }
+
+    statusBox.hidden = false;
+    statusBox.dataset.state = state;
+    statusBox.textContent = message;
+  };
+
+  const setLoading = (isLoading) => {
+    if (!submitButton) {
+      return;
+    }
+
+    submitButton.disabled = isLoading;
+    submitButton.textContent = isLoading ? 'Preparing secure checkout...' : submitCopy;
+  };
+
+  const loadRazorpay = async () => {
+    if (window.Razorpay) {
+      return true;
+    }
+
+    return new Promise((resolve) => {
+      const script = document.createElement('script');
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      script.async = true;
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.head.appendChild(script);
+    });
+  };
+
+  const toPayload = (formData) => ({
+    parent_name: formData.get('parent_name'),
+    whatsapp: formData.get('whatsapp'),
+    email: formData.get('email'),
+    class: formData.get('class'),
+    area_locality: formData.get('area_locality'),
+    biggest_concern: formData.get('biggest_concern'),
+    source: formData.get('source'),
+  });
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (statusBox) {
+      statusBox.hidden = true;
+    }
+
+    if (!form.reportValidity()) {
+      return;
+    }
+
+    const formData = new FormData(form);
+    const payload = toPayload(formData);
+    setLoading(true);
+
+    try {
+      const leadResponse = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const leadData = await leadResponse.json();
+
+      if (!leadResponse.ok) {
+        throw new Error(leadData.error || 'Registration could not be started.');
+      }
+
+      window.trackLandingEvent('Lead_Submit', {
+        leadId: leadData.leadId,
+        mode: leadData.mode,
+      });
+
+      if (leadData.mode !== 'payment') {
+        form.reset();
+        setStatus('success', leadData.message || fallbackCopy);
+        return;
+      }
+
+      const razorpayReady = await loadRazorpay();
+      if (!razorpayReady || !window.Razorpay) {
+        throw new Error('Secure payment could not be loaded. Please try again.');
+      }
+
+      const paymentStartResponse = await fetch('/api/payments/start', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          leadId: leadData.leadId,
+          orderId: leadData.orderId,
+        }),
+      });
+
+      if (!paymentStartResponse.ok) {
+        const paymentStartData = await paymentStartResponse.json().catch(() => null);
+        throw new Error(paymentStartData?.error || 'Payment session could not be started.');
+      }
+
+      window.trackLandingEvent('Payment_Start', {
+        leadId: leadData.leadId,
+        orderId: leadData.orderId,
+      });
+
+      const razorpay = new window.Razorpay({
+        key: leadData.keyId,
+        amount: leadData.amount,
+        currency: leadData.currency,
+        name: 'Pragnya Consultancy',
+        description: '₹99 Stream Clarity Webinar',
+        order_id: leadData.orderId,
+        prefill: leadData.prefill,
+        notes: leadData.notes,
+        theme: {
+          color: '#fed65b',
+        },
+        modal: {
+          ondismiss: () => {
+            setStatus('info', 'Payment not completed. If checkout was started, we will remind you on WhatsApp.');
+          },
+        },
+        handler: async (response) => {
+          try {
+            const verifyResponse = await fetch('/api/payments/verify', {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json',
+              },
+              body: JSON.stringify({
+                leadId: leadData.leadId,
+                ...response,
+              }),
+            });
+
+            const verifyData = await verifyResponse.json();
+
+            if (!verifyResponse.ok) {
+              throw new Error(verifyData.error || 'Payment verification failed.');
+            }
+
+            window.trackLandingEvent('Payment_Success', {
+              leadId: leadData.leadId,
+              orderId: leadData.orderId,
+            });
+
+            form.reset();
+            setStatus('success', verifyData.message || confirmedCopy);
+          } catch (error) {
+            setStatus('error', error.message || 'Payment verification failed.');
+          }
+        },
+      });
+
+      razorpay.open();
+    } catch (error) {
+      setStatus('error', error.message || 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  });
+</script>

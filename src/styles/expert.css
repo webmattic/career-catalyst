@@ -35,6 +35,11 @@
   min-width: 0;
 }
 
+.expert-transition {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .expert-badges {
   display: flex;
   flex-wrap: wrap;

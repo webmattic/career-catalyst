@@ -28,6 +28,22 @@
   color: var(--primary-muted);
 }
 
+.registration-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.registration-highlights span {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 12px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
 .lead-form {
   display: grid;
   gap: 14px;
@@ -60,6 +76,37 @@
   color: var(--text-muted);
   font-size: 0.72rem;
   text-align: center;
+}
+
+.lead-form-note {
+  font-size: 0.78rem;
+}
+
+.lead-form-privacy {
+  font-size: 0.72rem;
+}
+
+.form-status {
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.form-status[data-state="success"] {
+  background: #ebf7ef;
+  color: #1a5c33;
+}
+
+.form-status[data-state="error"] {
+  background: #fff2f0;
+  color: #a33025;
+}
+
+.form-status[data-state="info"] {
+  background: #eef5ff;
+  color: #1f4885;
 }
 
 .lead-form .button {
