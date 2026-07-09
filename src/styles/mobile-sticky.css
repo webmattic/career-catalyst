@@ -1,3 +1,35 @@
+.floating-actions {
+  position: fixed;
+  right: 16px;
+  bottom: 18px;
+  z-index: 61;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.floating-action {
+  display: inline-flex;
+  width: 52px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 12px 28px rgba(0, 15, 35, 0.2);
+  cursor: pointer;
+}
+
+.floating-action-whatsapp {
+  background: #25d366;
+  color: #ffffff;
+}
+
+.floating-action-top {
+  background: var(--primary-container);
+  color: #ffffff;
+}
+
 /* ---- Mobile Sticky CTA ---- */
 
 .mobile-sticky-cta {
@@ -18,6 +50,12 @@
   box-shadow: 0 -4px 20px rgba(0, 31, 63, 0.16);
 }
 
+@media (min-width: 721px) {
+  .mobile-sticky-cta {
+    display: none;
+  }
+}
+
 @media (max-width: 380px) {
   .mobile-sticky-cta {
     font-size: 0.86rem;
@@ -25,6 +63,16 @@
 }
 
 @media (max-width: 720px) {
+  .floating-actions {
+    right: 14px;
+    bottom: 86px;
+  }
+
+  .floating-action {
+    width: 48px;
+    height: 48px;
+  }
+
   .mobile-sticky-cta {
     display: flex;
   }

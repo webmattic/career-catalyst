@@ -1,12 +1,13 @@
 ---
 import '../../styles/value.css';
+import { webinarConfig } from '../../data/webinar.js';
 ---
 
 <section class="value-section section-pad">
   <div class="container value-panel">
     <div>
-      <p class="label gold">What you get for ₹99</p>
-      <h2>What your ₹99 registration includes</h2>
+      <p class="label gold">What you get for {webinarConfig.displayPrice}</p>
+      <h2>What your webinar registration includes</h2>
     </div>
     <ul class="value-list">
       <li><strong>Access to the live Stream Clarity Webinar</strong> on Google Meet.</li>

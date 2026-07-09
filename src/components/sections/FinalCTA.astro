@@ -1,5 +1,6 @@
 ---
 import '../../styles/final-cta.css';
+import { webinarConfig } from '../../data/webinar.js';
 ---
 
 <section class="final-cta-section section-pad">
@@ -11,7 +12,7 @@ import '../../styles/final-cta.css';
       Arts by pressure, marks or peer influence.
     </p>
     <a href="#webinar-form" class="button button-gold" data-track-event="HeroCTA_Click" data-track-placement="final-cta">
-      Reserve My Parent Seat for ₹99
+      Reserve My Parent Seat for {webinarConfig.displayPrice}
     </a>
     <span>Instant confirmation on WhatsApp after payment.</span>
   </div>

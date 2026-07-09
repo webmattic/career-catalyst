@@ -9,7 +9,7 @@ interface Props {
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? '';
 const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
 const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '';
-const { title = "Pragnya Consultancy - ₹99 Stream Clarity Webinar", description = "A practical ₹99 webinar for Mumbai parents who want to choose the right stream using aptitude, personality, interest, and learning-style signals." } = Astro.props;
+const { title = "Pragnya Consultancy - ₹99/- Only Stream Clarity Webinar", description = "A practical ₹99/- Only webinar for Mumbai parents who want to choose the right stream using aptitude, personality, interest, and learning-style signals." } = Astro.props;
 ---
 
 <!doctype html>
@@ -18,8 +18,10 @@ const { title = "Pragnya Consultancy - ₹99 Stream Clarity Webinar", descriptio
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/favicon.png" />
+    <meta name="theme-color" content="#001f3f" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -1,7 +1,7 @@
 export const webinarConfig = {
   amountInPaise: 9900,
   currency: 'INR',
-  displayPrice: '₹99',
+  displayPrice: '₹99/- Only',
   dateLabel: '19th July',
   timeLabel: '4:00 PM',
   durationLabel: '75 minutes + parent Q&A',
@@ -36,7 +36,7 @@ export const webinarFaqs = [
   {
     question: 'Is this a career aptitude test?',
     answer:
-      'No. The ₹99 webinar is a guidance session. It explains how parents should think about aptitude, personality, interests and study style while choosing a stream. Parents who want deeper clarity can choose an optional scientific assessment and personal counselling pathway after the webinar.',
+      'No. The ₹99/- Only webinar is a guidance session. It explains how parents should think about aptitude, personality, interests and study style while choosing a stream. Parents who want deeper clarity can choose an optional scientific assessment and personal counselling pathway after the webinar.',
   },
   {
     question: 'What happens after the webinar?',
@@ -54,9 +54,9 @@ export const webinarFaqs = [
       'After successful payment, the webinar link and confirmation details will be sent to your WhatsApp number.',
   },
   {
-    question: 'Is the ₹99 fee refundable?',
+    question: 'Is the ₹99/- Only fee refundable?',
     answer:
-      'The ₹99 registration fee is non-refundable because it reserves your seat for the live session. If you cannot attend, contact us before the webinar and we will try to help you with the next available session.',
+      'The ₹99/- Only registration fee is non-refundable because it reserves your seat for the live session. If you cannot attend, contact us before the webinar and we will try to help you with the next available session.',
   },
   {
     question: 'Is this only for Mumbai parents?',

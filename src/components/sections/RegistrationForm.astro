@@ -13,7 +13,7 @@ const confirmedCopy =
 <section id="webinar-form" class="registration-section section-pad">
   <div class="container registration-panel">
     <div class="registration-copy">
-      <p class="label gold">Reserve your ₹99 webinar seat</p>
+      <p class="label gold">Reserve your webinar seat for {webinarConfig.displayPrice}</p>
       <h2>Enter your details and continue to secure payment.</h2>
       <p>
         We save your registration before checkout so your seat can be recovered if payment is interrupted. The webinar
@@ -178,7 +178,7 @@ const confirmedCopy =
         amount: leadData.amount,
         currency: leadData.currency,
         name: 'Pragnya Consultancy',
-        description: '₹99 Stream Clarity Webinar',
+        description: `${leadData.displayPrice || '₹99/- Only'} Stream Clarity Webinar`,
         order_id: leadData.orderId,
         prefill: leadData.prefill,
         notes: leadData.notes,

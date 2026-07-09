@@ -1,28 +1,29 @@
 ---
 import '../../styles/hero.css';
+import { webinarConfig } from '../../data/webinar.js';
 
 const webinarHref = '#webinar-form';
 ---
 
 <section id="webinar" class="hero-section">
-  <div class="container hero-card">
+  <div class="container hero-shell">
     <div class="hero-copy">
       <p class="label">For Mumbai Class 8–10 parents</p>
       <h1>Confused Between Science, Commerce or Arts? Make the Right Stream Decision Before Class 10 Pressure Peaks.</h1>
       <p class="hero-lede">
-        A practical ₹99 live webinar for Mumbai parents to understand their child’s aptitude signals, personality fit,
+        A practical live webinar for Mumbai parents at {webinarConfig.displayPrice} to understand their child’s aptitude signals, personality fit,
         study style and stream direction before choosing the wrong path under pressure.
       </p>
       <div class="hero-actions">
         <a href={webinarHref} class="button button-gold" data-track-event="HeroCTA_Click" data-track-placement="hero">
-          Reserve My Parent Seat for ₹99
+          Reserve My Parent Seat for {webinarConfig.displayPrice}
         </a>
       </div>
       <p class="hero-payment-note">Instant payment via UPI, GPay, PhonePe or card. Webinar link sent on WhatsApp after confirmation.</p>
       <div class="trust-line" aria-label="Webinar trust signals">
-        <span>Led by Mehal Chhaya</span>
+        <span>Led live by Mehal Chhaya</span>
         <span>27+ years in education</span>
-        <span>Designed for Class 8–10 parents</span>
+        <span>75-minute session + parent Q&amp;A</span>
       </div>
     </div>
     <div class="hero-media">
