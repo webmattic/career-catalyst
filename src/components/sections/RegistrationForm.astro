@@ -3,11 +3,11 @@ import '../../styles/registration.css';
 import { biggestConcernOptions, webinarConfig } from '../../data/webinar.js';
 
 const submitCopy = 'Continue to Secure Payment';
-const paymentEnabledCopy = 'Pay securely via UPI, GPay, PhonePe, card or net banking. Your Google Meet link will be sent on WhatsApp after successful payment.';
+const paymentEnabledCopy = 'Pay securely via UPI, GPay, PhonePe, card or net banking. After payment, our team will share your Google Meet link on your registered WhatsApp number.';
 const fallbackCopy =
   'Your details have been saved. We will share the payment link on WhatsApp once checkout is enabled for this session.';
 const confirmedCopy =
-  'Your payment is captured. Your webinar seat is confirmed for 19th July at 4:00 PM. The Google Meet link will be shared on WhatsApp after payment processing completes.';
+  'Your payment is captured. Your webinar seat is confirmed for 19th July at 4:00 PM. Our team will share your Google Meet link on your registered WhatsApp number shortly.';
 ---
 
 <section id="webinar-form" class="registration-section section-pad">
@@ -50,6 +50,9 @@ const confirmedCopy =
       <p class="lead-form-privacy">
         We will use your details only for webinar confirmation, reminders and career guidance communication.
       </p>
+      <a class="registration-whatsapp-link" href="https://wa.me/919820800752" target="_blank" rel="noopener">
+        Prefer to ask a question first? Message us on WhatsApp.
+      </a>
       <div class="form-status" data-form-status hidden aria-live="polite"></div>
     </form>
   </div>
@@ -184,7 +187,7 @@ const confirmedCopy =
         },
         modal: {
           ondismiss: () => {
-            setStatus('info', 'Payment not completed. If checkout was started, we will remind you on WhatsApp.');
+            setStatus('info', 'Payment not completed. You can retry the checkout or message us on WhatsApp for help.');
           },
         },
         handler: async (response) => {

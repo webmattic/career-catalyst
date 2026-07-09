@@ -86,6 +86,16 @@
   font-size: 0.72rem;
 }
 
+.registration-whatsapp-link {
+  color: var(--primary-container);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-underline-offset: 4px;
+}
+
 .form-status {
   border-radius: 6px;
   padding: 12px 14px;
