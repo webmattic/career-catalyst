@@ -1,13 +1,23 @@
 ---
 import '../../styles/framework.css';
-
+import OutlineIcon from '../shared/OutlineIcon.astro';
 ---
 
 <section id="framework" class="framework-section section-pad">
-  <div class="container split-grid">
-    <div class="section-copy">
-      <p class="label muted">Core mechanism</p>
-      <h2>Four signals are stronger than one marksheet.</h2>
+  <div class="container framework-shell">
+    <div class="section-copy framework-copy">
+      <div class="framework-heading">
+        <figure class="framework-portrait">
+          <img src="/images/women-four-signals.webp" alt="Parent reflecting on stream choices and future direction" loading="lazy" width="220" height="220" />
+        </figure>
+        <div class="framework-heading-copy">
+          <div class="framework-kicker">
+            <OutlineIcon name="sparkles" size={16} />
+            <p class="label muted">Core mechanism</p>
+          </div>
+          <h2>Four signals are stronger than one marksheet.</h2>
+        </div>
+      </div>
       <p>
         In the webinar, we show parents how stream decisions should be evaluated using four practical signals that are
         more reliable than marks alone.
@@ -16,24 +26,36 @@ import '../../styles/framework.css';
     </div>
     <div class="pillar-grid" aria-label="Four assessment pillars">
       <article class="pillar-card">
-        <span>Aptitude</span>
+        <div class="pillar-kicker">
+          <span class="pillar-icon"><OutlineIcon name="brain" size={18} /></span>
+          <span class="pillar-label">Aptitude</span>
+        </div>
         <h3>What comes naturally</h3>
-        <p>What kind of problems your child naturally understands faster and more confidently.</p>
+        <p>Spot whether your child naturally leans toward analytical problem-solving, pattern recognition, or subject depth before pressure takes over.</p>
       </article>
       <article class="pillar-card">
-        <span>Personality</span>
+        <div class="pillar-kicker">
+          <span class="pillar-icon"><OutlineIcon name="compass" size={18} /></span>
+          <span class="pillar-label">Personality</span>
+        </div>
         <h3>Environment and fit</h3>
-        <p>What kind of learning environment helps your child perform better under pressure.</p>
+        <p>Understand whether your child performs better with structure, independence, pace, collaboration, or lower-pressure learning environments.</p>
       </article>
       <article class="pillar-card">
-        <span>Interests</span>
+        <div class="pillar-kicker">
+          <span class="pillar-icon"><OutlineIcon name="sparkles" size={18} /></span>
+          <span class="pillar-label">Interests</span>
+        </div>
         <h3>Sustained curiosity</h3>
-        <p>Which subjects and activities create real interest, not temporary excitement or imitation.</p>
+        <p>Separate genuine long-term interest from imitation, peer influence, or temporary excitement about a popular path.</p>
       </article>
       <article class="pillar-card">
-        <span>Study style</span>
+        <div class="pillar-kicker">
+          <span class="pillar-icon"><OutlineIcon name="book-open" size={18} /></span>
+          <span class="pillar-label">Study style</span>
+        </div>
         <h3>Execution habits</h3>
-        <p>How your child handles depth, memorisation, logic, revision and independent work.</p>
+        <p>See how your child handles logic, memorisation, revision, focus, and self-driven work so stream choices feel more realistic.</p>
       </article>
     </div>
   </div>

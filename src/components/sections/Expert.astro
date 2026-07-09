@@ -1,5 +1,7 @@
 ---
 import '../../styles/expert.css';
+import OutlineIcon from '../shared/OutlineIcon.astro';
+import { webinarAuthorityStats } from '../../data/webinar.js';
 ---
 
 <section id="expert" class="expert-section section-pad">
@@ -16,13 +18,29 @@ import '../../styles/expert.css';
       <p>
         Mehal Chhaya brings 27+ years of experience in education, student guidance and parent-child career
         discussions. Her approach helps families move from confusion and pressure to a clearer, calmer decision-making
-        process.
+        process rooted in practical fit, not social noise.
       </p>
       <div class="expert-badges">
         <span>27+ years in education</span>
         <span>Career counselling</span>
         <span>Parent-child discussion support</span>
         <span>Aptitude, personality and study-style guidance</span>
+      </div>
+      <div class="expert-proof-band">
+        {webinarAuthorityStats.map((item, index) => (
+          <article class="expert-proof-card">
+            <span class="expert-proof-icon">
+              <OutlineIcon name={index === 0 ? 'school' : index === 1 ? 'users' : index === 2 ? 'message-circle' : 'badge-check'} size={18} />
+            </span>
+            <strong>{item.value}</strong>
+            <span class="expert-proof-label">{item.label}</span>
+            <small>{item.note}</small>
+          </article>
+        ))}
+      </div>
+      <div class="expert-trust-note">
+        <span class="expert-trust-icon"><OutlineIcon name="heart-handshake" size={18} /></span>
+        <p>This section intentionally includes clearly marked metric placeholders so verified proof can be swapped in later without redesigning the funnel.</p>
       </div>
       <p class="expert-transition">
         After the webinar, parents who want deeper clarity can choose an optional scientific assessment and personal

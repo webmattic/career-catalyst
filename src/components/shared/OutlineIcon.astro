@@ -1,0 +1,161 @@
+---
+interface Props {
+  name:
+    | 'calendar'
+    | 'clock'
+    | 'video'
+    | 'wallet'
+    | 'users'
+    | 'brain'
+    | 'sparkles'
+    | 'compass'
+    | 'handshake'
+    | 'book-open'
+    | 'shield'
+    | 'message-circle'
+    | 'check-circle'
+    | 'triangle-alert'
+    | 'school'
+    | 'star'
+    | 'heart-handshake'
+    | 'badge-check';
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 20, class: className = '' } = Astro.props;
+---
+
+<svg
+  class={className}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.8"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  {name === 'calendar' && (
+    <>
+      <path d="M8 2v4" />
+      <path d="M16 2v4" />
+      <rect x="3" y="4" width="18" height="18" rx="2" />
+      <path d="M3 10h18" />
+    </>
+  )}
+  {name === 'clock' && (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </>
+  )}
+  {name === 'video' && (
+    <>
+      <rect x="3" y="6" width="13" height="12" rx="2" />
+      <path d="m16 10 5-3v10l-5-3z" />
+    </>
+  )}
+  {name === 'wallet' && (
+    <>
+      <path d="M17 6V4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+      <path d="M3 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3" />
+      <path d="M17 12h.01" />
+    </>
+  )}
+  {name === 'users' && (
+    <>
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </>
+  )}
+  {name === 'brain' && (
+    <>
+      <path d="M9.5 3A3.5 3.5 0 0 0 6 6.5V7a3 3 0 0 0-2 2.83A3 3 0 0 0 5.5 12 3 3 0 0 0 6 17.8V18a3 3 0 0 0 3 3h.5" />
+      <path d="M14.5 3A3.5 3.5 0 0 1 18 6.5V7a3 3 0 0 1 2 2.83A3 3 0 0 1 18.5 12 3 3 0 0 1 18 17.8V18a3 3 0 0 1-3 3h-.5" />
+      <path d="M12 3v18" />
+      <path d="M9 12h6" />
+    </>
+  )}
+  {name === 'sparkles' && (
+    <>
+      <path d="m12 3 1.4 3.6L17 8l-3.6 1.4L12 13l-1.4-3.6L7 8l3.6-1.4Z" />
+      <path d="m5 14 .8 2.2L8 17l-2.2.8L5 20l-.8-2.2L2 17l2.2-.8Z" />
+      <path d="m19 14 .8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8Z" />
+    </>
+  )}
+  {name === 'compass' && (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m8 16 2.3-6.3L16 8l-2.3 6.3Z" />
+    </>
+  )}
+  {name === 'handshake' && (
+    <>
+      <path d="m11 13 2 2a2 2 0 1 0 3-3l-2.5-2.5a2 2 0 0 0-2.83 0L8 12" />
+      <path d="m5 9 2-2a2 2 0 0 1 2.83 0L11 8" />
+      <path d="m3 11 3 3" />
+      <path d="m21 11-3 3" />
+    </>
+  )}
+  {name === 'book-open' && (
+    <>
+      <path d="M12 7v14" />
+      <path d="M3 18a3 3 0 0 1 3-3h6v6H6a3 3 0 0 1-3-3Z" />
+      <path d="M21 18a3 3 0 0 0-3-3h-6v6h6a3 3 0 0 0 3-3Z" />
+      <path d="M6 4h4a2 2 0 0 1 2 2v9H6a2 2 0 0 0-2 2V6a2 2 0 0 1 2-2Z" />
+      <path d="M18 4h-4a2 2 0 0 0-2 2v9h6a2 2 0 0 1 2 2V6a2 2 0 0 0-2-2Z" />
+    </>
+  )}
+  {name === 'shield' && (
+    <>
+      <path d="M12 3 5 6v6c0 5 3.4 8.7 7 9 3.6-.3 7-4 7-9V6Z" />
+      <path d="m9 12 2 2 4-4" />
+    </>
+  )}
+  {name === 'message-circle' && (
+    <>
+      <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+    </>
+  )}
+  {name === 'check-circle' && (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m9 12 2 2 4-4" />
+    </>
+  )}
+  {name === 'triangle-alert' && (
+    <>
+      <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94A2 2 0 0 0 22.18 18L13.71 3.86a2 2 0 0 0-3.42 0Z" />
+      <path d="M12 9v4" />
+      <path d="M12 17h.01" />
+    </>
+  )}
+  {name === 'school' && (
+    <>
+      <path d="m2 9 10-5 10 5-10 5Z" />
+      <path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" />
+    </>
+  )}
+  {name === 'star' && (
+    <>
+      <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9Z" />
+    </>
+  )}
+  {name === 'heart-handshake' && (
+    <>
+      <path d="M12 21s-6.7-4.4-9-8.2C1.2 9.8 3 6 6.8 6c2.1 0 3.4 1.2 5.2 3 1.8-1.8 3.1-3 5.2-3C21 6 22.8 9.8 21 12.8 18.7 16.6 12 21 12 21Z" />
+      <path d="m8.5 12 2 2 5-5" />
+    </>
+  )}
+  {name === 'badge-check' && (
+    <>
+      <path d="m12 3 2.4 1.6 2.9-.2 1.6 2.4 2.4 1.6-.2 2.9L22.7 14l-1.6 2.4.2 2.9-2.4 1.6-1.6 2.4-2.9-.2L12 21l-2.4 1.6-2.9-.2-1.6-2.4-2.4-1.6.2-2.9L1.3 14l1.6-2.4-.2-2.9 2.4-1.6 1.6-2.4 2.9.2Z" />
+      <path d="m9 12 2 2 4-4" />
+    </>
+  )}
+</svg>

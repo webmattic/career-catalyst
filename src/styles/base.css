@@ -280,6 +280,26 @@ details {
   content: "";
 }
 
+.details-icon,
+.feature-icon,
+.pillar-icon,
+.proof-group-icon,
+.proof-intro-icon,
+.expert-proof-icon,
+.expert-trust-icon,
+.why-now-feelings-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(175, 200, 240, 0.55);
+  background: rgba(212, 227, 255, 0.34);
+  color: var(--primary-container);
+}
+
 /* ---- Responsive ---- */
 
 @media (max-width: 768px) {

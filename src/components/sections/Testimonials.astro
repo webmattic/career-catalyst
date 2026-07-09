@@ -1,0 +1,65 @@
+---
+import '../../styles/testimonials.css';
+import OutlineIcon from '../shared/OutlineIcon.astro';
+import { webinarProofGroups } from '../../data/webinar.js';
+---
+
+<section class="testimonials-section section-pad" aria-labelledby="parent-proof-heading">
+  <div class="container">
+    <div class="section-heading centered">
+      <p class="label muted">Parent trust and proof</p>
+      <h2 id="parent-proof-heading">How this proof section is ready for real parent validation</h2>
+      <p>
+        The visual structure below is final. Real anonymized parent feedback can replace these placeholder proof slots
+        without changing the live funnel.
+      </p>
+    </div>
+
+    <div class="proof-intro">
+      <div class="proof-intro-card">
+        <span class="proof-intro-icon"><OutlineIcon name="heart-handshake" size={18} /></span>
+        <strong>Placeholder proof slots</strong>
+        <p>Every card is explicitly marked as placeholder content until real approved parent proof is provided.</p>
+      </div>
+      <div class="proof-intro-card">
+        <span class="proof-intro-icon"><OutlineIcon name="badge-check" size={18} /></span>
+        <strong>Ready for a credible rollout</strong>
+        <p>The rating row, quote layout, labels, and concern tags are already structured for real anonymized feedback.</p>
+      </div>
+    </div>
+
+    <div class="proof-groups">
+      {webinarProofGroups.map((group) => (
+        <section class="proof-group">
+          <div class="proof-group-heading">
+            <span class="proof-group-icon"><OutlineIcon name={group.icon} size={18} /></span>
+            <div>
+              <p class="label muted">{group.label}</p>
+              <h3>{group.title}</h3>
+            </div>
+          </div>
+          <div class="testimonial-grid">
+            {group.items.map((item) => (
+              <article class="testimonial-card">
+                <div class="testimonial-meta">
+                  <span class="testimonial-status">{item.statusLabel}</span>
+                  <span class="testimonial-tag">{item.contextTag}</span>
+                </div>
+                <div class="testimonial-rating" aria-label={`${item.rating} out of 5 stars`}>
+                  {Array.from({ length: item.rating }).map(() => (
+                    <OutlineIcon name="star" size={14} class="rating-star" />
+                  ))}
+                </div>
+                <p class="testimonial-quote">“{item.quote}”</p>
+                <div class="testimonial-parent">
+                  <strong>{item.parentLabel}</strong>
+                  <span>{item.parentContext}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</section>

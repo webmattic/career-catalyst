@@ -50,6 +50,9 @@
 }
 
 .site-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   border-radius: 4px;
   padding: 9px 10px;
   color: var(--primary-muted);

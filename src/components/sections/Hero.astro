@@ -1,6 +1,7 @@
 ---
 import '../../styles/hero.css';
 import { webinarConfig } from '../../data/webinar.js';
+import OutlineIcon from '../shared/OutlineIcon.astro';
 
 const webinarHref = '#webinar-form';
 ---
@@ -12,7 +13,7 @@ const webinarHref = '#webinar-form';
       <h1>Confused Between Science, Commerce or Arts? Make the Right Stream Decision Before Class 10 Pressure Peaks.</h1>
       <p class="hero-lede">
         A practical live webinar for Mumbai parents at {webinarConfig.displayPrice} to understand their child’s aptitude signals, personality fit,
-        study style and stream direction before choosing the wrong path under pressure.
+        study style and stream direction so you can replace panic and pressure with a calmer, more confident stream decision.
       </p>
       <div class="hero-actions">
         <a href={webinarHref} class="button button-gold" data-track-event="HeroCTA_Click" data-track-placement="hero">
@@ -21,9 +22,9 @@ const webinarHref = '#webinar-form';
       </div>
       <p class="hero-payment-note">Instant payment via UPI, GPay, PhonePe or card. Webinar link sent on WhatsApp after confirmation.</p>
       <div class="trust-line" aria-label="Webinar trust signals">
-        <span>Led live by Mehal Chhaya</span>
-        <span>27+ years in education</span>
-        <span>75-minute session + parent Q&amp;A</span>
+        <span><OutlineIcon name="badge-check" size={15} /> Led live by Mehal Chhaya</span>
+        <span><OutlineIcon name="school" size={15} /> 27+ years in education</span>
+        <span><OutlineIcon name="message-circle" size={15} /> 75-minute session + parent Q&amp;A</span>
       </div>
     </div>
     <div class="hero-media">

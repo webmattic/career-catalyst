@@ -21,20 +21,31 @@
 }
 
 .why-now-card li {
-  position: relative;
-  padding-left: 24px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
   color: var(--text-muted);
 }
 
-.why-now-card li::before {
-  position: absolute;
-  left: 0;
-  top: 0.42em;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--gold);
-  content: "";
+.why-now-feelings {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.why-now-feelings article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 12px;
+  border-radius: 8px;
+  background: var(--surface-low);
+  padding: 16px;
+}
+
+.why-now-feelings strong,
+.why-now-feelings p {
+  grid-column: 2;
+  margin: 0;
 }
 
 .why-now-close {

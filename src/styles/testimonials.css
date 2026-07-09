@@ -1,0 +1,125 @@
+/* ---- Testimonials / Proof Section ---- */
+
+.testimonials-section {
+  background: linear-gradient(180deg, #ffffff 0%, var(--surface) 100%);
+  border-top: 1px solid var(--surface-border);
+}
+
+.proof-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.proof-intro-card {
+  display: grid;
+  gap: 10px;
+  border: 1px solid var(--surface-border-strong);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 22px;
+  box-shadow: var(--shadow-soft);
+}
+
+.proof-intro-card strong {
+  color: var(--primary);
+}
+
+.proof-groups {
+  display: grid;
+  gap: 26px;
+}
+
+.proof-group-heading {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.proof-group h3 {
+  color: var(--primary);
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.testimonial-card {
+  display: grid;
+  gap: 12px;
+  min-height: 100%;
+  border: 1px solid var(--surface-border-strong);
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 22px;
+  box-shadow: 0 18px 42px rgba(0, 31, 63, 0.06);
+}
+
+.testimonial-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.testimonial-status,
+.testimonial-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.testimonial-status {
+  background: rgba(254, 214, 91, 0.22);
+  color: var(--gold-dark);
+}
+
+.testimonial-tag {
+  background: var(--surface-low);
+  color: var(--primary-container);
+}
+
+.testimonial-rating {
+  display: flex;
+  gap: 6px;
+  color: var(--gold-dim);
+}
+
+.testimonial-quote {
+  color: var(--text);
+  line-height: 1.75;
+}
+
+.testimonial-parent {
+  display: grid;
+  gap: 4px;
+}
+
+.testimonial-parent strong {
+  color: var(--primary);
+}
+
+.testimonial-parent span {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 1100px) {
+  .testimonial-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .proof-intro,
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+}

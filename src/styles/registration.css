@@ -53,6 +53,23 @@
   padding: 24px;
 }
 
+.payment-trust-row {
+  display: grid;
+  gap: 10px;
+  border-radius: 8px;
+  background: var(--surface-low);
+  padding: 14px;
+}
+
+.payment-trust-row span {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
 .lead-form input,
 .lead-form select {
   width: 100%;
@@ -80,6 +97,12 @@
 
 .lead-form-note {
   font-size: 0.78rem;
+}
+
+.lead-form-reassurance {
+  font-size: 0.77rem;
+  color: var(--primary);
+  font-weight: 700;
 }
 
 .lead-form-privacy {

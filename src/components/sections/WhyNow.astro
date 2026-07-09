@@ -1,5 +1,6 @@
 ---
 import '../../styles/why-now.css';
+import OutlineIcon from '../shared/OutlineIcon.astro';
 ---
 
 <section class="why-now-section section-pad">
@@ -12,6 +13,18 @@ import '../../styles/why-now.css';
         earlier parents understand the right decision framework, the easier it becomes to guide the child without
         panic, comparison or pressure.
       </p>
+      <div class="why-now-feelings">
+        <article>
+          <span class="why-now-feelings-icon"><OutlineIcon name="triangle-alert" size={18} /></span>
+          <strong>Pressure feels urgent</strong>
+          <p>Parents often feel they must decide quickly, even when the family still lacks real clarity.</p>
+        </article>
+        <article>
+          <span class="why-now-feelings-icon"><OutlineIcon name="shield" size={18} /></span>
+          <strong>Clarity reduces damage</strong>
+          <p>Earlier understanding helps avoid avoidable stress, spending, and wrong-fit subject commitments.</p>
+        </article>
+      </div>
       <p class="why-now-close">
         The right stream decision does not guarantee success. But the wrong stream decision can make the next 3–5
         years unnecessarily difficult.
@@ -20,12 +33,12 @@ import '../../styles/why-now.css';
     <div class="why-now-card">
       <h3>Wrong stream choices can lead to:</h3>
       <ul>
-        <li>Loss of motivation</li>
-        <li>Tuition and coaching waste</li>
-        <li>Parent-child conflict</li>
-        <li>Last-minute subject switching</li>
-        <li>Confusion after Class 12</li>
-        <li>Poor fit between degree and career path</li>
+        <li><OutlineIcon name="triangle-alert" size={16} /> Loss of motivation</li>
+        <li><OutlineIcon name="wallet" size={16} /> Tuition and coaching waste</li>
+        <li><OutlineIcon name="heart-handshake" size={16} /> Parent-child conflict</li>
+        <li><OutlineIcon name="book-open" size={16} /> Last-minute subject switching</li>
+        <li><OutlineIcon name="compass" size={16} /> Confusion after Class 12</li>
+        <li><OutlineIcon name="school" size={16} /> Poor fit between degree and career path</li>
       </ul>
     </div>
   </div>

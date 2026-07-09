@@ -1,6 +1,7 @@
 ---
 import '../../styles/final-cta.css';
 import { webinarConfig } from '../../data/webinar.js';
+import OutlineIcon from '../shared/OutlineIcon.astro';
 ---
 
 <section class="final-cta-section section-pad">
@@ -11,6 +12,11 @@ import { webinarConfig } from '../../data/webinar.js';
       Spend 75 minutes now to understand the decision framework before your child is pushed into Science, Commerce or
       Arts by pressure, marks or peer influence.
     </p>
+    <div class="final-cta-proof">
+      <span><OutlineIcon name="badge-check" size={16} /> Calm framework</span>
+      <span><OutlineIcon name="message-circle" size={16} /> Live parent Q&amp;A</span>
+      <span><OutlineIcon name="book-open" size={16} /> Checklist after registration</span>
+    </div>
     <a href="#webinar-form" class="button button-gold" data-track-event="HeroCTA_Click" data-track-placement="final-cta">
       Reserve My Parent Seat for {webinarConfig.displayPrice}
     </a>

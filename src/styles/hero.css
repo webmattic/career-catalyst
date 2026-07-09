@@ -72,7 +72,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
   margin-top: 22px;
   border-top: 1px solid rgba(212, 227, 255, 0.38);
   padding-top: 18px;
@@ -81,10 +81,13 @@
   font-weight: 700;
 }
 
-.trust-line span:not(:last-child)::after {
-  content: ".";
-  margin-left: 10px;
-  color: var(--gold);
+.trust-line span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: rgba(212, 227, 255, 0.08);
+  padding: 7px 12px;
 }
 
 @media (max-width: 980px) {

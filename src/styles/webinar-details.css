@@ -21,9 +21,14 @@
 }
 
 .details-grid div {
+  position: relative;
   border-radius: 6px;
   background: var(--surface-low);
   padding: 18px;
+}
+
+.details-icon {
+  margin-bottom: 14px;
 }
 
 .details-grid dt {
@@ -44,6 +49,12 @@
 .details-note {
   margin-top: 20px;
   font-size: 0.92rem;
+}
+
+.details-reassurance {
+  margin-top: 12px;
+  color: var(--primary);
+  font-weight: 600;
 }
 
 @media (max-width: 980px) {
