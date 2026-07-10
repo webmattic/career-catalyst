@@ -16,11 +16,26 @@
   padding-bottom: 28px;
 }
 
+.footer-brand-block {
+  display: grid;
+  gap: 8px;
+  max-width: 360px;
+  text-align: left;
+}
+
 .footer-brand {
   color: var(--gold);
   font-family: "Libre Caslon Text", serif;
   font-size: 1.45rem;
   font-weight: 700;
+}
+
+.footer-address {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.55;
 }
 
 .footer-links {
@@ -44,6 +59,10 @@
   .footer-shell,
   .footer-links {
     flex-direction: column;
+  }
+
+  .footer-brand-block {
+    text-align: center;
   }
 
   .site-footer {
