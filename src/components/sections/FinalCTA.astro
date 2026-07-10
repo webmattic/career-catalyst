@@ -6,20 +6,24 @@ import OutlineIcon from '../shared/OutlineIcon.astro';
 
 <section class="final-cta-section section-pad">
   <div class="container final-cta-card">
-    <p class="label gold">Final call to action</p>
-    <h2>Do not wait until stream selection becomes a last-minute panic decision.</h2>
-    <p>
-      Class 8 to 10 is the right time to understand your child’s strengths, interests and study style before Science,
-      Commerce or Arts becomes a rushed decision.
-    </p>
-    <div class="final-cta-proof">
-      <span><OutlineIcon name="badge-check" size={16} /> {webinarConfig.displayPrice} live webinar</span>
-      <span><OutlineIcon name="message-circle" size={16} /> Parent-focused</span>
-      <span><OutlineIcon name="book-open" size={16} /> WhatsApp confirmation after payment</span>
+    <div class="final-cta-content">
+      <p class="label gold">Final call to action</p>
+      <h2>Do not wait until stream selection becomes a last-minute panic decision.</h2>
+      <p>
+        Class 8 to 10 is the right time to understand your child’s strengths, interests and study style before Science,
+        Commerce or Arts becomes a rushed decision.
+      </p>
     </div>
-    <a href="#registration-form" class="button button-gold" data-track-event="final_cta_click" data-track-placement="final-cta">
-      Reserve My Seat for {webinarConfig.displayPrice}
-    </a>
-    <p class="final-cta-microcopy">{webinarConfig.displayPrice} live webinar • Parent-focused • WhatsApp confirmation after payment</p>
+    <div class="final-cta-actions">
+      <div class="final-cta-proof" aria-label="Registration reassurance">
+        <span><OutlineIcon name="badge-check" size={17} /> {webinarConfig.displayPrice} live webinar seat</span>
+        <span><OutlineIcon name="message-circle" size={17} /> Parent-focused guidance</span>
+        <span><OutlineIcon name="video" size={17} /> Google Meet confirmation on WhatsApp</span>
+      </div>
+      <a href="#registration-form" class="button button-gold" data-track-event="final_cta_click" data-track-placement="final-cta">
+        Reserve My Seat for {webinarConfig.displayPrice}
+      </a>
+      <p class="final-cta-microcopy">Takes less than a minute. Confirmation is sent after UPI payment verification.</p>
+    </div>
   </div>
 </section>
