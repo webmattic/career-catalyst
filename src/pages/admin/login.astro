@@ -18,7 +18,24 @@ import Layout from '../../layouts/Layout.astro';
         </label>
         <label>
           <span>Password</span>
-          <input type="password" name="password" autocomplete="current-password" required />
+          <div class="admin-password-field">
+            <input
+              type="password"
+              name="password"
+              autocomplete="current-password"
+              required
+              data-admin-password-input
+            />
+            <button
+              type="button"
+              class="admin-password-toggle"
+              data-admin-password-toggle
+              aria-label="Show password"
+              aria-pressed="false"
+            >
+              Show
+            </button>
+          </div>
         </label>
         <button type="submit">Sign in</button>
         <p class="admin-login-status" data-admin-login-status hidden></p>
@@ -29,11 +46,25 @@ import Layout from '../../layouts/Layout.astro';
   <script is:inline>
     const form = document.querySelector('[data-admin-login]');
     const statusEl = document.querySelector('[data-admin-login-status]');
+    const passwordInput = document.querySelector('[data-admin-password-input]');
+    const passwordToggle = document.querySelector('[data-admin-password-toggle]');
 
     const setStatus = (message) => {
       statusEl.hidden = false;
       statusEl.textContent = message;
     };
+
+    passwordToggle?.addEventListener('click', () => {
+      const shouldReveal = passwordInput?.type === 'password';
+      if (!passwordInput) {
+        return;
+      }
+
+      passwordInput.type = shouldReveal ? 'text' : 'password';
+      passwordToggle.textContent = shouldReveal ? 'Hide' : 'Show';
+      passwordToggle.setAttribute('aria-label', shouldReveal ? 'Hide password' : 'Show password');
+      passwordToggle.setAttribute('aria-pressed', shouldReveal ? 'true' : 'false');
+    });
 
     form?.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -128,6 +159,29 @@ import Layout from '../../layouts/Layout.astro';
   .admin-login-form input:focus {
     border-color: #e9c349;
     outline: 3px solid rgba(254, 214, 91, 0.34);
+  }
+
+  .admin-password-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .admin-password-field input {
+    width: 100%;
+    padding-right: 78px;
+  }
+
+  .admin-password-toggle {
+    position: absolute;
+    right: 10px;
+    border: 0;
+    background: transparent;
+    color: #001f3f;
+    font: inherit;
+    font-size: 0.86rem;
+    font-weight: 800;
+    cursor: pointer;
   }
 
   .admin-login-form button {
