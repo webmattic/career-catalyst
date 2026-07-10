@@ -18,7 +18,9 @@ interface Props {
     | 'school'
     | 'star'
     | 'heart-handshake'
-    | 'badge-check';
+    | 'badge-check'
+    | 'robot'
+    | 'award';
   size?: number;
   class?: string;
 }
@@ -156,6 +158,24 @@ const { name, size = 20, class: className = '' } = Astro.props;
     <>
       <path d="m12 3 2.4 1.6 2.9-.2 1.6 2.4 2.4 1.6-.2 2.9L22.7 14l-1.6 2.4.2 2.9-2.4 1.6-1.6 2.4-2.9-.2L12 21l-2.4 1.6-2.9-.2-1.6-2.4-2.4-1.6.2-2.9L1.3 14l1.6-2.4-.2-2.9 2.4-1.6 1.6-2.4 2.9.2Z" />
       <path d="m9 12 2 2 4-4" />
+    </>
+  )}
+  {name === 'robot' && (
+    <>
+      <rect x="5" y="7" width="14" height="11" rx="3" />
+      <path d="M12 7V4" />
+      <path d="M9 4h6" />
+      <circle cx="9.5" cy="12" r=".7" />
+      <circle cx="14.5" cy="12" r=".7" />
+      <path d="M9 15h6" />
+      <path d="M3 11v3" />
+      <path d="M21 11v3" />
+    </>
+  )}
+  {name === 'award' && (
+    <>
+      <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" />
+      <circle cx="12" cy="8" r="6" />
     </>
   )}
 </svg>

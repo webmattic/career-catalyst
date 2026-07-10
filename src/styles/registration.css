@@ -1,23 +1,24 @@
 /* ---- Registration / Lead Form Section ---- */
 
 .registration-section {
-  background: var(--surface);
+  background: var(--primary-container);
 }
 
 .registration-panel {
   display: grid;
-  grid-template-columns: 0.9fr 1fr;
-  gap: 40px;
+  grid-template-columns: minmax(280px, 0.65fr) minmax(620px, 1.35fr);
+  gap: 48px;
   align-items: start;
-  max-width: 980px;
+  max-width: 1220px;
   overflow: hidden;
-  border-radius: 8px;
+  border: 1px solid rgba(175, 200, 240, 0.48);
+  border-radius: 12px;
   background:
     radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.11), transparent 32%),
     var(--primary-container);
   color: #ffffff;
-  padding: 52px;
-  box-shadow: var(--shadow-soft);
+  padding: 54px;
+  box-shadow: 0 28px 80px rgba(0, 6, 19, 0.28);
 }
 
 .registration-copy h2 {
@@ -44,8 +45,40 @@
   font-weight: 700;
 }
 
+.payment-logo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 26px;
+  border: 1px solid rgba(175, 200, 240, 0.28);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 12px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.payment-logo-row span {
+  color: var(--primary-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.payment-logo-row img {
+  width: auto;
+  height: 34px;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 6px 10px;
+  object-fit: contain;
+}
+
 .lead-form {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
   border: 1px solid var(--primary-muted);
   border-radius: 8px;
@@ -53,9 +86,19 @@
   padding: 24px;
 }
 
+.lead-form > input[type="hidden"],
+.lead-form > .payment-trust-row,
+.lead-form > .button,
+.lead-form > p,
+.lead-form > a,
+.lead-form > .form-status {
+  grid-column: 1 / -1;
+}
+
 .payment-trust-row {
   display: grid;
-  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 14px;
   border-radius: 8px;
   background: var(--surface-low);
   padding: 14px;
@@ -233,6 +276,19 @@ body.upi-modal-open {
 @media (max-width: 980px) {
   .registration-panel {
     grid-template-columns: 1fr;
+    max-width: 760px;
+  }
+
+  .lead-form {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-trust-row {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-logo-row {
+    width: 100%;
   }
 }
 
@@ -243,6 +299,15 @@ body.upi-modal-open {
 
   .lead-form {
     padding: 20px;
+  }
+
+  .payment-logo-row {
+    justify-content: center;
+  }
+
+  .payment-logo-row span {
+    width: 100%;
+    text-align: center;
   }
 
   .upi-modal {

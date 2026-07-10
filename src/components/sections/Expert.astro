@@ -6,31 +6,54 @@ import OutlineIcon from '../shared/OutlineIcon.astro';
 <section id="expert" class="expert-section section-pad">
   <div class="container expert-card">
     <div class="expert-credential">
-      <picture>
-        <source srcset="/images/mehal-3.webp" type="image/webp" />
-        <img src="/images/mehal-3.jpg" alt="Mehal Chhaya credentials and career counselling profile" loading="lazy" width="800" height="1201" />
-      </picture>
+      <div class="expert-portrait-frame">
+        <img src="/images/mehal-chhaya.webp" alt="Mehal Chhaya, educator and career counsellor" loading="lazy" width="300" height="400" />
+      </div>
+      <div class="expert-signature-card">
+        <span><span class="founder-ribbon"><OutlineIcon name="award" size={15} /></span> Founder</span>
+        <strong><OutlineIcon name="robot" size={19} /> STEM & Robotics Institute</strong>
+      </div>
     </div>
     <div class="expert-copy">
       <p class="label muted">Counsellor authority</p>
       <h2>Guided by Mehal Chhaya</h2>
       <p>
-        Career counsellor and education professional with 27+ years of experience helping students and parents make
-        clearer academic decisions.
+        Mehal Chhaya brings a strong education background, career counselling experience, and a practical parent-first
+        approach to help families make calmer stream decisions before pressure builds.
       </p>
-      <div class="expert-badges">
-        <span>27+ years in education</span>
-        <span>Career counselling and parent-student guidance experience</span>
-        <span>Focused on aptitude, personality and stream-selection clarity</span>
-        <span>Practical guidance for Indian school and college pathways</span>
+      <div class="expert-proof-band" aria-label="Mehal Chhaya credentials">
+        <article class="expert-proof-card featured">
+          <span class="expert-proof-icon"><OutlineIcon name="badge-check" size={18} /></span>
+          <div>
+            <strong>27+ years</strong>
+            <span class="expert-proof-label">Excellence in education</span>
+          </div>
+        </article>
+        <article class="expert-proof-card">
+          <span class="expert-proof-icon"><OutlineIcon name="school" size={18} /></span>
+          <div>
+            <strong>B.Com | MBA</strong>
+            <span class="expert-proof-label">Six Sigma Certified</span>
+          </div>
+        </article>
+      </div>
+      <div class="expert-specialities" aria-label="Areas of guidance">
+        <span><OutlineIcon name="compass" size={17} /> Career counselling & aptitude guidance</span>
+        <span><OutlineIcon name="brain" size={17} /> Vedic mathematics</span>
+        <span><OutlineIcon name="message-circle" size={17} /> Phonetics & communication skills</span>
+        <span><OutlineIcon name="book-open" size={17} /> Spoken & written English grammar</span>
+        <span><OutlineIcon name="heart-handshake" size={17} /> Personal mentoring</span>
       </div>
       <div class="expert-trust-note">
         <span class="expert-trust-icon"><OutlineIcon name="badge-check" size={18} /></span>
-        <p>Her role in this webinar is to help parents think more clearly, more calmly, and more responsibly before stream pressure peaks.</p>
+        <p>
+          Her role in this webinar is to help parents distinguish marks, aptitude, personality and study style, so the
+          stream conversation becomes calmer and more realistic.
+        </p>
       </div>
       <p class="expert-transition">
-        After the webinar, parents who want deeper clarity can choose an optional scientific assessment and personal
-        counselling pathway.
+        She also founded a STEM & Robotics Institute focused on innovation, creativity and future-ready skills for
+        young learners.
       </p>
     </div>
   </div>
