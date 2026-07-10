@@ -7,8 +7,8 @@ import OutlineIcon from '../shared/OutlineIcon.astro';
 <section class="mini-quiz-section section-pad">
   <div class="container mini-quiz-shell">
     <div class="mini-quiz-copy">
-      <p class="label muted">Optional Stream Clarity Check</p>
-      <h2>Try the free 2-minute Stream Clarity Check</h2>
+      <p class="label muted">Optional 2-Minute Stream Clarity Check</p>
+      <h2>Try the 2-Minute Stream Clarity Check</h2>
       <p>
         This short check is not a full aptitude test. It is a simple reflection exercise to help parents notice early
         patterns before attending the webinar.
@@ -60,6 +60,7 @@ import OutlineIcon from '../shared/OutlineIcon.astro';
 <script is:inline define:vars={{ displayPrice: webinarConfig.displayPrice }}>
   const quizForm = document.querySelector('[data-mini-quiz]');
   const quizResult = document.querySelector('[data-mini-quiz-result]');
+  let didTrackQuizStart = false;
 
   const results = {
     analytical:
@@ -86,15 +87,30 @@ import OutlineIcon from '../shared/OutlineIcon.astro';
     quizResult.innerHTML = `
       <strong>Reflection teaser</strong>
       <p>${message}</p>
-      <a href="#webinar-form" class="button button-gold" data-track-event="quiz_cta_click" data-track-placement="mini-quiz">
+      <a href="#registration-form" class="button button-gold" data-track-event="quiz_cta_click" data-track-placement="mini-quiz">
         Reserve My Seat for ${displayPrice}
       </a>
     `;
 
-    window.trackLandingEvent?.('mini_quiz_submit', {
+    window.trackLandingEvent?.('quiz_complete', {
       strength: formData.get('strength'),
       pressure: formData.get('pressure'),
       pressureSource: formData.get('pressure_source'),
     });
   });
+
+  quizForm?.addEventListener(
+    'focusin',
+    () => {
+      if (didTrackQuizStart) {
+        return;
+      }
+
+      didTrackQuizStart = true;
+      window.trackLandingEvent?.('quiz_start', {
+        section: 'mini_quiz',
+      });
+    },
+    { once: true }
+  );
 </script>

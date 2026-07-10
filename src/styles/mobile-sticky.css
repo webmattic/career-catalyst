@@ -34,23 +34,29 @@
 
 .mobile-sticky-cta {
   position: fixed;
-  right: 12px;
-  bottom: 12px;
-  left: 12px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 60;
   display: none;
-  min-height: 52px;
+  padding: 10px 14px;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  min-height: 46px;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  background: var(--gold);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.96);
   color: var(--gold-dark);
-  font-weight: 900;
+  font-weight: 700;
   text-align: center;
-  box-shadow: 0 -4px 20px rgba(0, 31, 63, 0.16);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08);
 }
 
-@media (min-width: 721px) {
+.mobile-sticky-cta.is-visible {
+  display: flex;
+}
+
+@media (min-width: 768px) {
   .mobile-sticky-cta {
     display: none;
   }
@@ -62,10 +68,10 @@
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 767px) {
   .floating-actions {
     right: 14px;
-    bottom: 86px;
+    bottom: 20px;
   }
 
   .floating-action {
@@ -73,7 +79,11 @@
     height: 48px;
   }
 
-  .mobile-sticky-cta {
+  .mobile-sticky-cta.is-visible {
     display: flex;
   }
+}
+
+body.sticky-cta-visible .floating-actions {
+  bottom: 82px;
 }

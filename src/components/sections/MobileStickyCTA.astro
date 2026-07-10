@@ -2,7 +2,7 @@
 import '../../styles/mobile-sticky.css';
 import { webinarConfig } from '../../data/webinar.js';
 
-const webinarHref = '#webinar-form';
+const webinarHref = '#registration-form';
 ---
 
 <div class="floating-actions" aria-label="Quick actions">
@@ -31,13 +31,83 @@ const webinarHref = '#webinar-form';
   </button>
 </div>
 
-<a href={webinarHref} class="mobile-sticky-cta" data-track-event="sticky_cta_click" data-track-placement="sticky">
-  Reserve Seat - {webinarConfig.displayPrice}
+<a href={webinarHref} class="mobile-sticky-cta" data-mobile-sticky-cta>
+  Reserve Seat – {webinarConfig.displayPrice}
 </a>
 
-<script is:inline>
+<script is:inline define:vars={{ webinarHref, displayPrice: webinarConfig.displayPrice }}>
   const scrollTopButton = document.querySelector('[data-scroll-top]');
+  const stickyCta = document.querySelector('[data-mobile-sticky-cta]');
+  const heroSection = document.getElementById('hero-section');
+  const registrationSection = document.getElementById('registration-form');
+
+  const setStickyState = (isVisible) => {
+    if (!stickyCta) {
+      return;
+    }
+
+    stickyCta.classList.toggle('is-visible', isVisible);
+    document.body.classList.toggle('sticky-cta-visible', isVisible);
+  };
+
+  const handleStickyVisibility = () => {
+    if (!heroSection || !stickyCta) {
+      return;
+    }
+
+    const isMobileViewport = window.innerWidth < 768;
+    if (!isMobileViewport) {
+      setStickyState(false);
+      return;
+    }
+
+    const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+    const hasPassedHero = window.scrollY > heroBottom - 40;
+    setStickyState(hasPassedHero);
+  };
+
   scrollTopButton?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  stickyCta?.addEventListener('click', (event) => {
+    event.preventDefault();
+    registrationSection?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+
+    window.trackLandingEvent?.('sticky_cta_click', {
+      cta_text: `Reserve Seat – ${displayPrice}`,
+      source: 'mobile_sticky_cta',
+      href: webinarHref,
+    });
+  });
+
+  if ('IntersectionObserver' in window && heroSection && stickyCta) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isMobileViewport = window.innerWidth < 768;
+
+        if (!isMobileViewport) {
+          setStickyState(false);
+          return;
+        }
+
+        setStickyState(!entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0.05,
+      }
+    );
+
+    observer.observe(heroSection);
+  } else {
+    window.addEventListener('scroll', handleStickyVisibility, { passive: true });
+  }
+
+  window.addEventListener('resize', handleStickyVisibility);
+  document.addEventListener('DOMContentLoaded', handleStickyVisibility);
+  handleStickyVisibility();
 </script>

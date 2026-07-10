@@ -3,10 +3,10 @@ import '../../styles/hero.css';
 import { webinarConfig } from '../../data/webinar.js';
 import OutlineIcon from '../shared/OutlineIcon.astro';
 
-const webinarHref = '#webinar-form';
+const webinarHref = '#registration-form';
 ---
 
-<section id="webinar" class="hero-section">
+<section id="hero-section" class="hero-section">
   <div class="container hero-shell">
     <div class="hero-copy">
       <p class="label">For Mumbai Class 8–10 parents</p>
@@ -24,7 +24,8 @@ const webinarHref = '#webinar-form';
         </a>
       </div>
       <p class="hero-payment-note">
-        Submit your details and complete your {webinarConfig.displayPrice} seat reservation instantly via UPI, GPay, PhonePe, cards or net banking.
+        Submit your details first. On the next step, scan the {webinarConfig.displayPrice} UPI QR using GPay, PhonePe,
+        Paytm, BHIM or any UPI app. Your webinar confirmation will be sent on WhatsApp after payment verification.
       </p>
       <div class="trust-line" aria-label="Webinar trust signals">
         <span><OutlineIcon name="badge-check" size={15} /> Guided by Mehal Chhaya</span>

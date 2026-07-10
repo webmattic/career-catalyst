@@ -1,19 +1,32 @@
 export const webinarConfig = {
+  paymentMode: 'upi_qr',
   amountInPaise: 9900,
   currency: 'INR',
   displayPrice: '₹99',
-  feeLabel: '₹99 only',
-  dateLabel: 'Sunday, 19th July',
-  timeLabel: '4:00 PM',
+  feeLabel: '₹99',
+  dateLabel: 'Sunday, 19 July 2026',
+  timeLabel: '4:00 PM IST',
   durationLabel: '75 minutes + parent Q&A',
   platformLabel: 'Google Meet',
   audienceLabel: 'Parents of Class 8, 9 and 10 students',
   locationLabel: 'Mumbai parents and school context',
-  preferredBatchLabel: 'Sunday, 19th July • 4:00 PM',
+  preferredBatchLabel: 'Sunday, 19 July 2026 • 4:00 PM IST',
   sessionStartIso: '2026-07-19T16:00:00+05:30',
   reminder24WindowMinutes: 20,
   reminder1WindowMinutes: 20,
   registrationSource: 'pragnya-webinar-landing-page',
+};
+
+export const upiPaymentConfig = {
+  amount: '₹99',
+  amountNumeric: 99,
+  upiId: 'REPLACE_WITH_FINAL_UPI_ID',
+  payeeName: 'Pragnya Consultancy',
+  purpose: 'Pragnya Stream Clarity Webinar',
+  webinarDateTime: webinarConfig.preferredBatchLabel,
+  // TODO: Replace with final verified Pragnya Consultancy UPI QR before production launch.
+  qrImagePath: '/images/payments/pragnya-upi-qr.png',
+  qrReady: false,
 };
 
 export const biggestConcernOptions = [

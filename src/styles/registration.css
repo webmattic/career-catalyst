@@ -6,10 +6,10 @@
 
 .registration-panel {
   display: grid;
-  grid-template-columns: 0.85fr 1fr;
-  gap: 56px;
-  align-items: center;
-  max-width: 960px;
+  grid-template-columns: 0.9fr 1fr;
+  gap: 40px;
+  align-items: start;
+  max-width: 980px;
   overflow: hidden;
   border-radius: 8px;
   background:
@@ -91,6 +91,9 @@
 .lead-form p {
   margin: 0;
   color: var(--text-muted);
+}
+
+.lead-form p {
   font-size: 0.72rem;
   text-align: center;
 }
@@ -125,6 +128,7 @@
   font-size: 0.84rem;
   font-weight: 600;
   line-height: 1.5;
+  text-align: center;
 }
 
 .form-status[data-state="success"] {
@@ -137,13 +141,93 @@
   color: #a33025;
 }
 
-.form-status[data-state="info"] {
-  background: #eef5ff;
-  color: #1f4885;
-}
-
 .lead-form .button {
   width: 100%;
+}
+
+.upi-modal[hidden] {
+  display: none;
+}
+
+.upi-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.upi-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 19, 46, 0.68);
+}
+
+.upi-modal-card {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 420px);
+  display: grid;
+  gap: 14px;
+  border-radius: 10px;
+  background: #f8fbff;
+  padding: 24px;
+  box-shadow: 0 24px 60px rgba(0, 19, 46, 0.24);
+}
+
+.upi-modal-card h3 {
+  color: var(--primary-container);
+  font-size: clamp(1.55rem, 3vw, 1.95rem);
+  line-height: 1.15;
+}
+
+.upi-modal-copy {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.upi-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: 0;
+  background: transparent;
+  color: var(--primary-container);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.upi-qr-shell {
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--surface-border-strong);
+  border-radius: 8px;
+  min-height: 280px;
+  padding: 18px;
+  background: #ffffff;
+}
+
+.upi-qr-shell img {
+  width: min(100%, 240px);
+  height: auto;
+}
+
+.upi-qr-placeholder {
+  display: grid;
+  gap: 10px;
+  max-width: 280px;
+  text-align: center;
+}
+
+.upi-qr-placeholder strong {
+  color: var(--primary-container);
+}
+
+body.upi-modal-open {
+  overflow: hidden;
 }
 
 @media (max-width: 980px) {
@@ -155,5 +239,18 @@
 @media (max-width: 720px) {
   .registration-panel {
     padding: 24px;
+  }
+
+  .lead-form {
+    padding: 20px;
+  }
+
+  .upi-modal {
+    padding: 12px;
+  }
+
+  .upi-modal-card {
+    width: min(100%, 360px);
+    padding: 22px 18px 18px;
   }
 }

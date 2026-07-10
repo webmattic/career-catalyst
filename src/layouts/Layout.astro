@@ -97,6 +97,7 @@ const { title = "Pragnya Consultancy - ₹99 Stream Clarity Webinar", descriptio
       };
 
       window.trackLandingEvent('PageView', { page: 'webinar-landing' });
+      window.trackLandingEvent('ViewContent', { page: 'webinar-landing' });
 
       document.addEventListener('click', (event) => {
         const trigger = event.target.closest('[data-track-event]');

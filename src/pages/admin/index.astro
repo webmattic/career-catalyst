@@ -23,15 +23,15 @@ import Layout from '../../layouts/Layout.astro';
           <strong data-summary-total>0</strong>
         </article>
         <article>
-          <span>Paid</span>
+          <span>Payment Successful</span>
           <strong data-summary-paid>0</strong>
         </article>
         <article>
-          <span>Payment Started</span>
+          <span>Payment Pending Verification</span>
           <strong data-summary-started>0</strong>
         </article>
         <article>
-          <span>Initiated</span>
+          <span>Lead Created</span>
           <strong data-summary-initiated>0</strong>
         </article>
       </div>
@@ -51,11 +51,12 @@ import Layout from '../../layouts/Layout.astro';
               <th>Status</th>
               <th>Created</th>
               <th>Paid At</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody data-admin-leads>
             <tr>
-              <td colspan="9">Loading...</td>
+              <td colspan="10">Loading...</td>
             </tr>
           </tbody>
         </table>
@@ -74,6 +75,14 @@ import Layout from '../../layouts/Layout.astro';
       paid: document.querySelector('[data-summary-paid]'),
       started: document.querySelector('[data-summary-started]'),
       initiated: document.querySelector('[data-summary-initiated]'),
+    };
+
+    const LEAD_STATUS_LABELS = {
+      initiated: 'Lead Created',
+      payment_started: 'Payment Pending Verification',
+      paid: 'Payment Successful',
+      abandoned: 'Payment Abandoned',
+      payment_failed: 'Payment Failed',
     };
 
     const formatDate = (value) => {
@@ -102,9 +111,21 @@ import Layout from '../../layouts/Layout.astro';
       summaryFields.initiated.textContent = String(counts.initiated || 0);
     };
 
+    const renderActionButton = (lead) => {
+      if (lead.payment_status === 'paid') {
+        return '<span class="admin-action-label">Verified</span>';
+      }
+
+      if (lead.payment_status === 'abandoned' || lead.payment_status === 'payment_failed') {
+        return '<span class="admin-action-label">No action</span>';
+      }
+
+      return `<button type="button" class="admin-mark-paid" data-mark-paid="${escapeHtml(lead.id)}">Mark Paid</button>`;
+    };
+
     const renderRows = (leads) => {
       if (!leads.length) {
-        tbody.innerHTML = '<tr><td colspan="9">No leads found yet.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="10">No leads found yet.</td></tr>';
         return;
       }
 
@@ -118,9 +139,10 @@ import Layout from '../../layouts/Layout.astro';
               <td>${escapeHtml(lead.email || '—')}</td>
               <td>${escapeHtml(lead.child_class || '—')}</td>
               <td>${escapeHtml(lead.biggest_concern || '—')}</td>
-              <td><span class="admin-status-pill" data-status="${escapeHtml(lead.payment_status || '')}">${escapeHtml(lead.payment_status || '—')}</span></td>
+              <td><span class="admin-status-pill" data-status="${escapeHtml(lead.payment_status || '')}">${escapeHtml(LEAD_STATUS_LABELS[lead.payment_status] || lead.payment_status || '—')}</span></td>
               <td>${escapeHtml(formatDate(lead.created_at))}</td>
               <td>${escapeHtml(formatDate(lead.payment_completed_at))}</td>
+              <td>${renderActionButton(lead)}</td>
             </tr>
           `
         )
@@ -147,7 +169,7 @@ import Layout from '../../layouts/Layout.astro';
         updateSummary(payload.summary || {}, (payload.leads || []).length);
         statusEl.textContent = `Showing ${payload.leads?.length || 0} most recent leads.`;
       } catch (error) {
-        tbody.innerHTML = '<tr><td colspan="9">Could not load leads.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="10">Could not load leads.</td></tr>';
         statusEl.textContent = error.message || 'Could not load leads.';
       } finally {
         refreshButton?.removeAttribute('disabled');
@@ -155,6 +177,49 @@ import Layout from '../../layouts/Layout.astro';
     };
 
     refreshButton?.addEventListener('click', loadLeads);
+
+    tbody?.addEventListener('click', async (event) => {
+      const button = event.target.closest('[data-mark-paid]');
+      if (!button) {
+        return;
+      }
+
+      const leadId = Number(button.dataset.markPaid);
+      if (!leadId) {
+        return;
+      }
+
+      button.setAttribute('disabled', 'disabled');
+
+      try {
+        const response = await fetch('/admin/api/leads/mark-paid', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({ leadId }),
+        });
+
+        if (!response.ok) {
+          const payload = await response.json().catch(() => null);
+          throw new Error(payload?.error || 'Could not mark lead as paid.');
+        }
+
+        window.trackLandingEvent?.('purchase', {
+          leadId,
+          value: 99,
+          currency: 'INR',
+          content_name: 'Pragnya Stream Clarity Webinar',
+          verification_source: 'admin_manual',
+        });
+
+        await loadLeads();
+      } catch (error) {
+        statusEl.textContent = error.message || 'Could not mark lead as paid.';
+        button.removeAttribute('disabled');
+      }
+    });
+
     logoutButton?.addEventListener('click', async () => {
       logoutButton.setAttribute('disabled', 'disabled');
 
@@ -166,6 +231,7 @@ import Layout from '../../layouts/Layout.astro';
         window.location.href = '/admin/login';
       }
     });
+
     loadLeads();
   </script>
 </Layout>
@@ -282,7 +348,7 @@ import Layout from '../../layouts/Layout.astro';
   .admin-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 980px;
+    min-width: 1080px;
   }
 
   .admin-table th,
@@ -317,15 +383,34 @@ import Layout from '../../layouts/Layout.astro';
     color: #1f4885;
   }
 
-  .admin-status-pill[data-status="paid"] {
+  .admin-status-pill[data-status='paid'] {
     background: #ebf7ef;
     color: #1a5c33;
   }
 
-  .admin-status-pill[data-status="payment_failed"],
-  .admin-status-pill[data-status="abandoned"] {
+  .admin-status-pill[data-status='payment_failed'],
+  .admin-status-pill[data-status='abandoned'] {
     background: #fff2f0;
     color: #a33025;
+  }
+
+  .admin-mark-paid {
+    min-height: 36px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--gold);
+    color: var(--gold-dark);
+    padding: 0 12px;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .admin-action-label {
+    color: #43474e;
+    font-size: 0.8rem;
+    font-weight: 700;
   }
 
   @media (max-width: 720px) {

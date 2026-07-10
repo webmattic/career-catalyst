@@ -17,7 +17,7 @@ test('sanitizeLeadPayload normalizes valid lead payload', () => {
     email: '  Parent@Example.com ',
     whatsapp: '+91 98765 43210',
     class: 'Class 9',
-    preferred_batch: ' Sunday, 19th July • 4:00 PM ',
+    preferred_batch: ' Sunday, 19 July 2026 • 4:00 PM IST ',
     child_board: ' CBSE ',
     area_locality: ' Andheri West ',
     biggest_concern: 'Need aptitude-based guidance',
@@ -28,7 +28,7 @@ test('sanitizeLeadPayload normalizes valid lead payload', () => {
   assert.equal(lead.email, 'parent@example.com');
   assert.equal(lead.whatsapp, '9876543210');
   assert.equal(lead.child_class, 'Class 9');
-  assert.equal(lead.preferred_batch, 'Sunday, 19th July • 4:00 PM');
+  assert.equal(lead.preferred_batch, 'Sunday, 19 July 2026 • 4:00 PM IST');
   assert.equal(lead.child_board, 'CBSE');
   assert.equal(lead.area_locality, 'Andheri West');
 });
@@ -55,7 +55,7 @@ test('sanitizeLeadPayload accepts optional email and locality', () => {
     email: '',
     whatsapp: '9876543210',
     class: 'Class 8',
-    preferred_batch: 'Sunday, 19th July • 4:00 PM',
+    preferred_batch: 'Sunday, 19 July 2026 • 4:00 PM IST',
     child_board: '',
     area_locality: '',
   });

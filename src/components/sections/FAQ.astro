@@ -19,3 +19,17 @@ import { webinarFaqs } from '../../data/webinar.js';
     </div>
   </div>
 </section>
+
+<script is:inline>
+  document.querySelectorAll('.faq-list details').forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) {
+        return;
+      }
+
+      window.trackLandingEvent?.('faq_open', {
+        question: item.querySelector('summary')?.textContent?.trim() || 'unknown',
+      });
+    });
+  });
+</script>

@@ -44,7 +44,8 @@ export async function onRequestPost({ request, env }) {
     {
       ok: true,
       paymentStatus: 'paid',
-      message: `Your webinar seat is confirmed. We have received your ${webinarConfig.displayPrice} payment. Your webinar confirmation and joining details will be sent to your WhatsApp number.`,
+      message:
+        'Your webinar seat is confirmed. We have received your ₹99 payment. Your webinar confirmation and joining details will be sent to your WhatsApp number.',
     },
     { headers: noStoreHeaders }
   );

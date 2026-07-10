@@ -25,7 +25,7 @@ export const insertLead = async (db, lead) => {
       lead.area_locality,
       lead.biggest_concern || null,
       'initiated',
-      'razorpay',
+      lead.payment_provider || 'razorpay',
       lead.source
     )
     .run();
@@ -57,18 +57,19 @@ export const markPaymentStarted = async (db, { leadId }) =>
     .bind(leadId)
     .run();
 
-export const markPaymentPaid = async (db, { leadId, paymentId, signature }) =>
+export const markPaymentPaid = async (db, { leadId, paymentId, signature, paymentProvider = null }) =>
   db
     .prepare(
       `UPDATE webinar_leads
        SET payment_status = 'paid',
            provider_payment_id = ?,
            razorpay_signature = ?,
+           payment_provider = COALESCE(?, payment_provider),
            payment_completed_at = COALESCE(payment_completed_at, CURRENT_TIMESTAMP),
            updated_at = CURRENT_TIMESTAMP
        WHERE id = ?`
     )
-    .bind(paymentId, signature || null, leadId)
+    .bind(paymentId || null, signature || null, paymentProvider, leadId)
     .run();
 
 export const markPaymentFailed = async (db, { leadId, reason }) =>
