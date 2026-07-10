@@ -1,0 +1,66 @@
+/* ---- Quick Decision Grid ---- */
+
+.quick-decision-section {
+  margin-top: -24px;
+}
+
+.quick-decision-card {
+  display: grid;
+  gap: 28px;
+  border: 1px solid var(--surface-border-strong);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(212, 227, 255, 0.18), rgba(255, 255, 255, 0.92)),
+    #ffffff;
+  padding: 32px;
+  box-shadow: var(--shadow-soft);
+}
+
+.quick-decision-copy {
+  max-width: 720px;
+}
+
+.quick-decision-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.quick-decision-grid article {
+  display: grid;
+  gap: 12px;
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 18px;
+}
+
+.quick-decision-grid span {
+  display: inline-flex;
+  color: var(--primary-container);
+}
+
+.quick-decision-grid h3 {
+  font-size: 1.06rem;
+}
+
+.quick-decision-grid p {
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 980px) {
+  .quick-decision-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .quick-decision-card {
+    padding: 22px;
+  }
+
+  .quick-decision-grid {
+    grid-template-columns: 1fr;
+  }
+}

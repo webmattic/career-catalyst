@@ -9,7 +9,7 @@ import OutlineIcon from '../shared/OutlineIcon.astro';
     <div class="details-card">
       <div class="details-copy">
         <p class="label muted">Live webinar details</p>
-        <h2>Everything a parent needs before reserving a seat</h2>
+        <h2>Everything you need before reserving your seat</h2>
       </div>
       <dl class="details-grid">
         <div>
@@ -34,18 +34,32 @@ import OutlineIcon from '../shared/OutlineIcon.astro';
         </div>
         <div>
           <span class="details-icon"><OutlineIcon name="wallet" size={18} /></span>
-          <dt>Fee</dt>
-          <dd>{webinarConfig.displayPrice}</dd>
+          <dt>Webinar fee</dt>
+          <dd>{webinarConfig.feeLabel}</dd>
         </div>
         <div>
           <span class="details-icon"><OutlineIcon name="users" size={18} /></span>
-          <dt>Who should attend</dt>
+          <dt>For</dt>
           <dd>{webinarConfig.audienceLabel}</dd>
+        </div>
+        <div>
+          <span class="details-icon"><OutlineIcon name="compass" size={18} /></span>
+          <dt>Location focus</dt>
+          <dd>Mumbai families</dd>
+        </div>
+        <div>
+          <span class="details-icon"><OutlineIcon name="brain" size={18} /></span>
+          <dt>Best for</dt>
+          <dd>Science / Commerce / Arts stream confusion</dd>
+        </div>
+        <div>
+          <span class="details-icon"><OutlineIcon name="message-circle" size={18} /></span>
+          <dt>Confirmation</dt>
+          <dd>Sent on WhatsApp after payment</dd>
         </div>
       </dl>
       <p class="details-note">
-        Your child may sit with you during the session, but the webinar is primarily designed for parents in the
-        Mumbai school context.
+        Your child may sit with you, but the session is primarily designed for parents in the Mumbai school context.
       </p>
       <p class="details-reassurance">Live Q&amp;A keeps the session practical, relevant, and parent-focused from start to finish.</p>
     </div>

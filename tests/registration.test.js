@@ -17,6 +17,8 @@ test('sanitizeLeadPayload normalizes valid lead payload', () => {
     email: '  Parent@Example.com ',
     whatsapp: '+91 98765 43210',
     class: 'Class 9',
+    preferred_batch: ' Sunday, 19th July • 4:00 PM ',
+    child_board: ' CBSE ',
     area_locality: ' Andheri West ',
     biggest_concern: 'Need aptitude-based guidance',
   });
@@ -26,21 +28,41 @@ test('sanitizeLeadPayload normalizes valid lead payload', () => {
   assert.equal(lead.email, 'parent@example.com');
   assert.equal(lead.whatsapp, '9876543210');
   assert.equal(lead.child_class, 'Class 9');
+  assert.equal(lead.preferred_batch, 'Sunday, 19th July • 4:00 PM');
+  assert.equal(lead.child_board, 'CBSE');
   assert.equal(lead.area_locality, 'Andheri West');
 });
 
-test('sanitizeLeadPayload rejects invalid class and whatsapp', () => {
+test('sanitizeLeadPayload rejects invalid class, whatsapp, batch, and board', () => {
   const { errors } = sanitizeLeadPayload({
     parent_name: 'Parent',
     email: 'parent@example.com',
     whatsapp: '12345',
     class: 'Class 11',
-    area_locality: '',
+    preferred_batch: 'Later',
+    child_board: 'State Board',
   });
 
   assert.ok(errors.some((error) => error.includes('10-digit WhatsApp')));
   assert.ok(errors.some((error) => error.includes('Class 8')));
-  assert.ok(errors.some((error) => error.includes('Area or locality')));
+  assert.ok(errors.some((error) => error.includes('available webinar batch')));
+  assert.ok(errors.some((error) => error.includes('valid board option')));
+});
+
+test('sanitizeLeadPayload accepts optional email and locality', () => {
+  const { errors, lead } = sanitizeLeadPayload({
+    parent_name: 'Parent',
+    email: '',
+    whatsapp: '9876543210',
+    class: 'Class 8',
+    preferred_batch: 'Sunday, 19th July • 4:00 PM',
+    child_board: '',
+    area_locality: '',
+  });
+
+  assert.deepEqual(errors, []);
+  assert.equal(lead.email, '');
+  assert.equal(lead.area_locality, '');
 });
 
 test('verifyRazorpayPaymentSignature matches Razorpay HMAC format', () => {

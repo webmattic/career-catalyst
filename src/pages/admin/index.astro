@@ -1,0 +1,355 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Pragnya Admin Leads" description="Protected admin view for webinar leads.">
+  <main class="admin-page">
+    <section class="admin-shell">
+      <div class="admin-header">
+        <div>
+          <p class="admin-kicker">Protected Admin</p>
+          <h1>Captured webinar leads</h1>
+          <p>Recent form submissions and payment status from the D1 `webinar_leads` table.</p>
+        </div>
+        <div class="admin-actions">
+          <button type="button" class="admin-refresh" data-refresh-leads>Refresh</button>
+          <button type="button" class="admin-logout" data-admin-logout>Logout</button>
+        </div>
+      </div>
+
+      <div class="admin-summary" data-admin-summary>
+        <article>
+          <span>Total Loaded</span>
+          <strong data-summary-total>0</strong>
+        </article>
+        <article>
+          <span>Paid</span>
+          <strong data-summary-paid>0</strong>
+        </article>
+        <article>
+          <span>Payment Started</span>
+          <strong data-summary-started>0</strong>
+        </article>
+        <article>
+          <span>Initiated</span>
+          <strong data-summary-initiated>0</strong>
+        </article>
+      </div>
+
+      <div class="admin-status" data-admin-status>Loading leads...</div>
+
+      <div class="admin-table-shell">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Parent</th>
+              <th>WhatsApp</th>
+              <th>Email</th>
+              <th>Class</th>
+              <th>Concern</th>
+              <th>Status</th>
+              <th>Created</th>
+              <th>Paid At</th>
+            </tr>
+          </thead>
+          <tbody data-admin-leads>
+            <tr>
+              <td colspan="9">Loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+    const statusEl = document.querySelector('[data-admin-status]');
+    const tbody = document.querySelector('[data-admin-leads]');
+    const refreshButton = document.querySelector('[data-refresh-leads]');
+    const logoutButton = document.querySelector('[data-admin-logout]');
+
+    const summaryFields = {
+      total: document.querySelector('[data-summary-total]'),
+      paid: document.querySelector('[data-summary-paid]'),
+      started: document.querySelector('[data-summary-started]'),
+      initiated: document.querySelector('[data-summary-initiated]'),
+    };
+
+    const formatDate = (value) => {
+      if (!value) return '—';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      return new Intl.DateTimeFormat('en-IN', {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+      }).format(date);
+    };
+
+    const escapeHtml = (value) =>
+      String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+
+    const updateSummary = (summary, loadedCount) => {
+      const counts = Object.fromEntries((summary.statusCounts || []).map((item) => [item.payment_status, Number(item.count)]));
+      summaryFields.total.textContent = String(loadedCount);
+      summaryFields.paid.textContent = String(counts.paid || 0);
+      summaryFields.started.textContent = String(counts.payment_started || 0);
+      summaryFields.initiated.textContent = String(counts.initiated || 0);
+    };
+
+    const renderRows = (leads) => {
+      if (!leads.length) {
+        tbody.innerHTML = '<tr><td colspan="9">No leads found yet.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = leads
+        .map(
+          (lead) => `
+            <tr>
+              <td>${escapeHtml(lead.id)}</td>
+              <td>${escapeHtml(lead.parent_name)}</td>
+              <td><a href="https://wa.me/91${escapeHtml(lead.whatsapp)}" target="_blank" rel="noopener">${escapeHtml(lead.whatsapp || '—')}</a></td>
+              <td>${escapeHtml(lead.email || '—')}</td>
+              <td>${escapeHtml(lead.child_class || '—')}</td>
+              <td>${escapeHtml(lead.biggest_concern || '—')}</td>
+              <td><span class="admin-status-pill" data-status="${escapeHtml(lead.payment_status || '')}">${escapeHtml(lead.payment_status || '—')}</span></td>
+              <td>${escapeHtml(formatDate(lead.created_at))}</td>
+              <td>${escapeHtml(formatDate(lead.payment_completed_at))}</td>
+            </tr>
+          `
+        )
+        .join('');
+    };
+
+    const loadLeads = async () => {
+      statusEl.textContent = 'Loading leads...';
+      refreshButton?.setAttribute('disabled', 'disabled');
+
+      try {
+        const response = await fetch('/admin/api/leads?limit=200', {
+          headers: {
+            accept: 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Admin leads request failed with status ${response.status}.`);
+        }
+
+        const payload = await response.json();
+        renderRows(payload.leads || []);
+        updateSummary(payload.summary || {}, (payload.leads || []).length);
+        statusEl.textContent = `Showing ${payload.leads?.length || 0} most recent leads.`;
+      } catch (error) {
+        tbody.innerHTML = '<tr><td colspan="9">Could not load leads.</td></tr>';
+        statusEl.textContent = error.message || 'Could not load leads.';
+      } finally {
+        refreshButton?.removeAttribute('disabled');
+      }
+    };
+
+    refreshButton?.addEventListener('click', loadLeads);
+    logoutButton?.addEventListener('click', async () => {
+      logoutButton.setAttribute('disabled', 'disabled');
+
+      try {
+        await fetch('/admin/api/logout', {
+          method: 'POST',
+        });
+      } finally {
+        window.location.href = '/admin/login';
+      }
+    });
+    loadLeads();
+  </script>
+</Layout>
+
+<style>
+  .admin-page {
+    min-height: 100vh;
+    background: #f4fafd;
+    padding: 48px 24px 80px;
+  }
+
+  .admin-shell {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    gap: 24px;
+  }
+
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: end;
+  }
+
+  .admin-actions {
+    display: flex;
+    gap: 12px;
+  }
+
+  .admin-kicker {
+    color: #001f3f;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .admin-header h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.1;
+  }
+
+  .admin-refresh {
+    min-height: 44px;
+    border: 0;
+    border-radius: 6px;
+    background: #001f3f;
+    color: #fff;
+    padding: 0 18px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .admin-refresh:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+
+  .admin-logout {
+    min-height: 44px;
+    border: 1px solid #c4c6cf;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #001f3f;
+    padding: 0 18px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .admin-summary {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .admin-summary article {
+    border: 1px solid #c4c6cf;
+    border-radius: 8px;
+    background: #fff;
+    padding: 18px;
+    display: grid;
+    gap: 8px;
+  }
+
+  .admin-summary span {
+    color: #43474e;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .admin-summary strong {
+    color: #001f3f;
+    font-size: 1.7rem;
+  }
+
+  .admin-status {
+    color: #43474e;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .admin-table-shell {
+    overflow: auto;
+    border: 1px solid #c4c6cf;
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 980px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #dde4e6;
+    text-align: left;
+    vertical-align: top;
+    font-size: 0.92rem;
+  }
+
+  .admin-table th {
+    position: sticky;
+    top: 0;
+    background: #eef5f7;
+    color: #001f3f;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .admin-status-pill {
+    display: inline-flex;
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: #eef5ff;
+    color: #1f4885;
+  }
+
+  .admin-status-pill[data-status="paid"] {
+    background: #ebf7ef;
+    color: #1a5c33;
+  }
+
+  .admin-status-pill[data-status="payment_failed"],
+  .admin-status-pill[data-status="abandoned"] {
+    background: #fff2f0;
+    color: #a33025;
+  }
+
+  @media (max-width: 720px) {
+    .admin-page {
+      padding: 32px 16px 64px;
+    }
+
+    .admin-header {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .admin-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .admin-summary {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .admin-refresh,
+    .admin-logout {
+      width: 100%;
+    }
+  }
+</style>

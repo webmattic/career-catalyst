@@ -1,0 +1,58 @@
+/* ---- Early CTA ---- */
+
+.early-cta-section {
+  padding: 24px 0 0;
+}
+
+.early-cta-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px;
+  align-items: center;
+  border-radius: 8px;
+  background: var(--primary-container);
+  color: #ffffff;
+  padding: 30px 32px;
+  box-shadow: var(--shadow-soft);
+}
+
+.early-cta-card h2,
+.early-cta-card p {
+  color: #ffffff;
+}
+
+.early-cta-card p {
+  max-width: 720px;
+  color: var(--primary-muted);
+}
+
+.early-cta-actions {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+
+.early-cta-actions span {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--primary-soft);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+@media (max-width: 980px) {
+  .early-cta-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .early-cta-card {
+    padding: 24px;
+  }
+
+  .early-cta-actions .button {
+    width: 100%;
+  }
+}

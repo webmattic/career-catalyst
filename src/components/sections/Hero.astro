@@ -12,19 +12,24 @@ const webinarHref = '#webinar-form';
       <p class="label">For Mumbai Class 8–10 parents</p>
       <h1>Confused Between Science, Commerce or Arts? Make the Right Stream Decision Before Class 10 Pressure Peaks.</h1>
       <p class="hero-lede">
-        A practical live webinar for Mumbai parents at {webinarConfig.displayPrice} to understand their child’s aptitude signals, personality fit,
-        study style and stream direction so you can replace panic and pressure with a calmer, more confident stream decision.
+        A practical {webinarConfig.displayPrice} live webinar for Mumbai parents of Class 8–10 students to understand aptitude, personality,
+        subject fit and career direction before choosing a stream.
       </p>
       <div class="hero-actions">
-        <a href={webinarHref} class="button button-gold" data-track-event="HeroCTA_Click" data-track-placement="hero">
-          Reserve My Parent Seat for {webinarConfig.displayPrice}
+        <a href={webinarHref} class="button button-gold" data-track-event="hero_cta_click" data-track-placement="hero">
+          Reserve My Seat for {webinarConfig.displayPrice}
+        </a>
+        <a href="#outcomes" class="button button-ghost" data-track-event="hero_secondary_cta_click" data-track-placement="hero-secondary">
+          See What You Will Learn
         </a>
       </div>
-      <p class="hero-payment-note">Instant payment via UPI, GPay, PhonePe or card. Webinar link sent on WhatsApp after confirmation.</p>
+      <p class="hero-payment-note">
+        Submit your details and complete your {webinarConfig.displayPrice} seat reservation instantly via UPI, GPay, PhonePe, cards or net banking.
+      </p>
       <div class="trust-line" aria-label="Webinar trust signals">
-        <span><OutlineIcon name="badge-check" size={15} /> Led live by Mehal Chhaya</span>
+        <span><OutlineIcon name="badge-check" size={15} /> Guided by Mehal Chhaya</span>
         <span><OutlineIcon name="school" size={15} /> 27+ years in education</span>
-        <span><OutlineIcon name="message-circle" size={15} /> 75-minute session + parent Q&amp;A</span>
+        <span><OutlineIcon name="message-circle" size={15} /> Parent-focused career clarity session</span>
       </div>
     </div>
     <div class="hero-media">

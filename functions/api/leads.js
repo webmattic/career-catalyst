@@ -39,7 +39,7 @@ export async function onRequestPost({ request, env }) {
         mode: 'lead_capture',
         leadId,
         message:
-          'Your details have been saved. We will share the payment link on WhatsApp once checkout is enabled for this session.',
+          'Your details have been saved. Checkout for this session is being enabled. We will confirm your seat on WhatsApp as soon as secure payment is live.',
       },
       { status: 202, headers: noStoreHeaders }
     );
@@ -69,14 +69,17 @@ export async function onRequestPost({ request, env }) {
       orderId: order.id,
       amount: webinarConfig.amountInPaise,
       currency: webinarConfig.currency,
+      displayPrice: webinarConfig.displayPrice,
       prefill: {
         name: lead.parent_name,
-        email: lead.email,
+        email: lead.email || undefined,
         contact: lead.whatsapp,
       },
       notes: {
         parent_name: lead.parent_name,
         child_class: lead.child_class,
+        preferred_batch: lead.preferred_batch,
+        child_board: lead.child_board || '',
       },
     },
     { headers: noStoreHeaders }

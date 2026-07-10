@@ -1,0 +1,26 @@
+---
+import '../../styles/early-cta.css';
+import { webinarConfig } from '../../data/webinar.js';
+import OutlineIcon from '../shared/OutlineIcon.astro';
+---
+
+<section class="early-cta-section">
+  <div class="container">
+    <div class="early-cta-card">
+      <div>
+        <p class="label gold">Early registration CTA</p>
+        <h2>Ready to avoid stream-selection confusion?</h2>
+        <p>
+          Reserve your {webinarConfig.displayPrice} parent seat now and get access to the live Stream Clarity Webinar plus a
+          parent checklist for discussing career options calmly with your child.
+        </p>
+      </div>
+      <div class="early-cta-actions">
+        <a href="#webinar-form" class="button button-gold" data-track-event="early_cta_click" data-track-placement="early-cta">
+          Reserve My Seat for {webinarConfig.displayPrice}
+        </a>
+        <span><OutlineIcon name="message-circle" size={16} /> WhatsApp confirmation after payment</span>
+      </div>
+    </div>
+  </div>
+</section>

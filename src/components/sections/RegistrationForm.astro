@@ -4,21 +4,22 @@ import { biggestConcernOptions, webinarConfig } from '../../data/webinar.js';
 import OutlineIcon from '../shared/OutlineIcon.astro';
 
 const submitCopy = 'Continue to Secure Payment';
-const paymentEnabledCopy = 'Pay securely via UPI, GPay, PhonePe, card or net banking. After payment, our team will share your Google Meet link on your registered WhatsApp number.';
+const paymentEnabledCopy =
+  'Submit your details and complete your ₹99 seat reservation instantly via UPI, GPay, PhonePe, cards or net banking.';
 const fallbackCopy =
-  'Your details have been saved. We will share the payment link on WhatsApp once checkout is enabled for this session.';
+  'Your details have been saved. Checkout for this session is being enabled. We will confirm your seat on WhatsApp as soon as secure payment is live.';
 const confirmedCopy =
-  'Your payment is captured. Your webinar seat is confirmed for 19th July at 4:00 PM. Our team will share your Google Meet link on your registered WhatsApp number shortly.';
+  'Your webinar seat is confirmed. We have received your ₹99 payment. Your webinar confirmation and joining details will be sent to your WhatsApp number.';
 ---
 
 <section id="webinar-form" class="registration-section section-pad">
   <div class="container registration-panel">
     <div class="registration-copy">
       <p class="label gold">Reserve your webinar seat for {webinarConfig.displayPrice}</p>
-      <h2>Enter your details and continue to secure payment.</h2>
+      <h2>Enter your details and confirm your secure payment</h2>
       <p>
-        We save your registration before checkout so your seat can be recovered if payment is interrupted. The webinar
-        link is shared after successful payment.
+        Submit your details and complete your {webinarConfig.displayPrice} seat reservation instantly via UPI, GPay,
+        PhonePe, cards or net banking. Your webinar confirmation will be sent on WhatsApp after payment.
       </p>
       <div class="registration-highlights">
         <span>{webinarConfig.dateLabel}</span>
@@ -28,16 +29,28 @@ const confirmedCopy =
     </div>
     <form class="lead-form" data-webinar-form novalidate>
       <input name="source" type="hidden" value={webinarConfig.registrationSource} />
+      <input name="area_locality" type="hidden" value="" />
       <input name="parent_name" type="text" autocomplete="name" placeholder="Parent Name" required />
       <input name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel" placeholder="WhatsApp Number" pattern="[6-9][0-9]{9}" required />
-      <input name="email" type="email" autocomplete="email" placeholder="Email Address" required />
       <select name="class" required>
         <option value="">Child's Class</option>
         <option>Class 8</option>
         <option>Class 9</option>
         <option>Class 10</option>
       </select>
-      <input name="area_locality" type="text" autocomplete="address-level2" placeholder="Area / Locality in Mumbai" required />
+      <select name="preferred_batch" required>
+        <option value="">Preferred Webinar Batch</option>
+        <option value={webinarConfig.preferredBatchLabel}>{webinarConfig.preferredBatchLabel}</option>
+      </select>
+      <input name="email" type="email" autocomplete="email" placeholder="Email Address (optional)" />
+      <select name="child_board">
+        <option value="">Child's Board (optional)</option>
+        <option>SSC</option>
+        <option>CBSE</option>
+        <option>ICSE</option>
+        <option>IGCSE</option>
+        <option>Other</option>
+      </select>
       <select name="biggest_concern">
         <option value="">Biggest concern right now (optional)</option>
         {biggestConcernOptions.map((option) => (
@@ -47,7 +60,7 @@ const confirmedCopy =
       <div class="payment-trust-row" aria-label="Payment trust signals">
         <span><OutlineIcon name="shield" size={16} /> Secure payment checkout</span>
         <span><OutlineIcon name="wallet" size={16} /> UPI, GPay, PhonePe, card supported</span>
-        <span><OutlineIcon name="video" size={16} /> Google Meet link after confirmation</span>
+        <span><OutlineIcon name="video" size={16} /> Webinar confirmation sent on WhatsApp</span>
         <span><OutlineIcon name="message-circle" size={16} /> WhatsApp confirmation support</span>
       </div>
       <button type="submit" class="button button-gold" data-submit-button data-default-label={submitCopy}>
@@ -70,6 +83,11 @@ const confirmedCopy =
   const form = document.querySelector('[data-webinar-form]');
   const statusBox = form?.querySelector('[data-form-status]');
   const submitButton = form?.querySelector('[data-submit-button]');
+  let didTrackFormStart = false;
+
+  const track = (eventName, detail = {}) => {
+    window.trackLandingEvent?.(eventName, detail);
+  };
 
   const setStatus = (state, message) => {
     if (!statusBox) {
@@ -110,10 +128,29 @@ const confirmedCopy =
     whatsapp: formData.get('whatsapp'),
     email: formData.get('email'),
     class: formData.get('class'),
+    preferred_batch: formData.get('preferred_batch'),
+    child_board: formData.get('child_board'),
     area_locality: formData.get('area_locality'),
     biggest_concern: formData.get('biggest_concern'),
     source: formData.get('source'),
   });
+
+  track('form_view', {
+    formId: 'webinar-form',
+  });
+
+  form?.addEventListener(
+    'focusin',
+    () => {
+      if (didTrackFormStart) {
+        return;
+      }
+
+      didTrackFormStart = true;
+      track('form_start', { formId: 'webinar-form' });
+    },
+    { once: true }
+  );
 
   form?.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -144,7 +181,7 @@ const confirmedCopy =
         throw new Error(leadData.error || 'Registration could not be started.');
       }
 
-      window.trackLandingEvent('Lead_Submit', {
+      track('form_submit', {
         leadId: leadData.leadId,
         mode: leadData.mode,
       });
@@ -176,7 +213,7 @@ const confirmedCopy =
         throw new Error(paymentStartData?.error || 'Payment session could not be started.');
       }
 
-      window.trackLandingEvent('Payment_Start', {
+      track('payment_started', {
         leadId: leadData.leadId,
         orderId: leadData.orderId,
       });
@@ -186,7 +223,7 @@ const confirmedCopy =
         amount: leadData.amount,
         currency: leadData.currency,
         name: 'Pragnya Consultancy',
-        description: `${leadData.displayPrice || '₹99/- Only'} Stream Clarity Webinar`,
+        description: `${leadData.displayPrice || '₹99'} Stream Clarity Webinar`,
         order_id: leadData.orderId,
         prefill: leadData.prefill,
         notes: leadData.notes,
@@ -195,7 +232,11 @@ const confirmedCopy =
         },
         modal: {
           ondismiss: () => {
-            setStatus('info', 'Payment not completed. You can retry the checkout or message us on WhatsApp for help.');
+            track('payment_abandoned', {
+              leadId: leadData.leadId,
+              orderId: leadData.orderId,
+            });
+            setStatus('info', 'Payment was not completed. Your details have been saved. You can try again to reserve your ₹99 webinar seat.');
           },
         },
         handler: async (response) => {
@@ -217,7 +258,7 @@ const confirmedCopy =
               throw new Error(verifyData.error || 'Payment verification failed.');
             }
 
-            window.trackLandingEvent('Payment_Success', {
+            track('payment_success', {
               leadId: leadData.leadId,
               orderId: leadData.orderId,
             });
@@ -225,6 +266,10 @@ const confirmedCopy =
             form.reset();
             setStatus('success', verifyData.message || confirmedCopy);
           } catch (error) {
+            track('payment_failed', {
+              leadId: leadData.leadId,
+              orderId: leadData.orderId,
+            });
             setStatus('error', error.message || 'Payment verification failed.');
           }
         },
@@ -232,6 +277,9 @@ const confirmedCopy =
 
       razorpay.open();
     } catch (error) {
+      track('payment_failed', {
+        message: error.message || 'unknown_error',
+      });
       setStatus('error', error.message || 'Something went wrong. Please try again.');
     } finally {
       setLoading(false);

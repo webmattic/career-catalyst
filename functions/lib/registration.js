@@ -3,6 +3,8 @@ import { createHmac, timingSafeEqual } from 'node:crypto';
 import { biggestConcernOptions, webinarConfig } from '../../src/data/webinar.js';
 
 const VALID_CLASSES = new Set(['Class 8', 'Class 9', 'Class 10']);
+const VALID_BATCHES = new Set([webinarConfig.preferredBatchLabel]);
+const VALID_BOARDS = new Set(['SSC', 'CBSE', 'ICSE', 'IGCSE', 'Other']);
 const VALID_CONCERNS = new Set(biggestConcernOptions);
 const PAYMENT_SUCCESS_STATUSES = new Set(['paid', 'captured']);
 
@@ -24,6 +26,8 @@ export const sanitizeLeadPayload = (rawLead = {}) => {
     whatsapp: normalizeWhatsapp(rawLead.whatsapp),
     child_class: normalizeText(rawLead.child_class ?? rawLead.class),
     area_locality: normalizeText(rawLead.area_locality),
+    preferred_batch: normalizeText(rawLead.preferred_batch),
+    child_board: normalizeText(rawLead.child_board),
     biggest_concern: normalizeText(rawLead.biggest_concern),
     source: normalizeText(rawLead.source) || webinarConfig.registrationSource,
     child_name: '',
@@ -35,7 +39,7 @@ export const sanitizeLeadPayload = (rawLead = {}) => {
     errors.push('Parent name is required.');
   }
 
-  if (!lead.email || !lead.email.includes('@')) {
+  if (lead.email && !lead.email.includes('@')) {
     errors.push('A valid email address is required.');
   }
 
@@ -47,8 +51,12 @@ export const sanitizeLeadPayload = (rawLead = {}) => {
     errors.push('Please choose Class 8, Class 9 or Class 10.');
   }
 
-  if (!lead.area_locality) {
-    errors.push('Area or locality in Mumbai is required.');
+  if (!VALID_BATCHES.has(lead.preferred_batch)) {
+    errors.push('Please choose the available webinar batch.');
+  }
+
+  if (lead.child_board && !VALID_BOARDS.has(lead.child_board)) {
+    errors.push('Please choose a valid board option.');
   }
 
   if (lead.biggest_concern && !VALID_CONCERNS.has(lead.biggest_concern)) {

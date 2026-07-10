@@ -1,0 +1,149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Pragnya Admin Login" description="Admin login for protected webinar leads view.">
+  <main class="admin-login-page">
+    <section class="admin-login-card">
+      <div class="admin-login-copy">
+        <p class="admin-login-kicker">Protected Admin</p>
+        <h1>Admin sign in</h1>
+        <p>Use the configured admin credentials to access webinar leads and payment status.</p>
+      </div>
+
+      <form class="admin-login-form" data-admin-login novalidate>
+        <label>
+          <span>Username</span>
+          <input type="text" name="username" autocomplete="username" required />
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" name="password" autocomplete="current-password" required />
+        </label>
+        <button type="submit">Sign in</button>
+        <p class="admin-login-status" data-admin-login-status hidden></p>
+      </form>
+    </section>
+  </main>
+
+  <script is:inline>
+    const form = document.querySelector('[data-admin-login]');
+    const statusEl = document.querySelector('[data-admin-login-status]');
+
+    const setStatus = (message) => {
+      statusEl.hidden = false;
+      statusEl.textContent = message;
+    };
+
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      statusEl.hidden = true;
+
+      if (!form.reportValidity()) {
+        return;
+      }
+
+      const formData = new FormData(form);
+      const payload = {
+        username: formData.get('username'),
+        password: formData.get('password'),
+      };
+
+      try {
+        const response = await fetch('/admin/api/login', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          const body = await response.json().catch(() => null);
+          throw new Error(body?.error || 'Login failed.');
+        }
+
+        window.location.href = '/admin';
+      } catch (error) {
+        setStatus(error.message || 'Login failed.');
+      }
+    });
+  </script>
+</Layout>
+
+<style>
+  .admin-login-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle at top left, rgba(254, 214, 91, 0.12), transparent 30%),
+      #f4fafd;
+    padding: 24px;
+  }
+
+  .admin-login-card {
+    width: min(100%, 480px);
+    display: grid;
+    gap: 22px;
+    border: 1px solid #c4c6cf;
+    border-radius: 10px;
+    background: #ffffff;
+    padding: 32px;
+    box-shadow: 0 24px 60px rgba(0, 31, 63, 0.1);
+  }
+
+  .admin-login-kicker {
+    color: #001f3f;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .admin-login-form {
+    display: grid;
+    gap: 16px;
+  }
+
+  .admin-login-form label {
+    display: grid;
+    gap: 8px;
+  }
+
+  .admin-login-form span {
+    color: #161d1f;
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+
+  .admin-login-form input {
+    min-height: 48px;
+    border: 1px solid #c4c6cf;
+    border-radius: 6px;
+    padding: 11px 13px;
+    font: inherit;
+  }
+
+  .admin-login-form input:focus {
+    border-color: #e9c349;
+    outline: 3px solid rgba(254, 214, 91, 0.34);
+  }
+
+  .admin-login-form button {
+    min-height: 48px;
+    border: 0;
+    border-radius: 6px;
+    background: #001f3f;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .admin-login-status {
+    color: #a33025;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+</style>

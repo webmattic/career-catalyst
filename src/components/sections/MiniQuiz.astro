@@ -1,0 +1,100 @@
+---
+import '../../styles/mini-quiz.css';
+import { webinarConfig } from '../../data/webinar.js';
+import OutlineIcon from '../shared/OutlineIcon.astro';
+---
+
+<section class="mini-quiz-section section-pad">
+  <div class="container mini-quiz-shell">
+    <div class="mini-quiz-copy">
+      <p class="label muted">Optional Stream Clarity Check</p>
+      <h2>Try the free 2-minute Stream Clarity Check</h2>
+      <p>
+        This short check is not a full aptitude test. It is a simple reflection exercise to help parents notice early
+        patterns before attending the webinar.
+      </p>
+      <div class="mini-quiz-points">
+        <span><OutlineIcon name="sparkles" size={16} /> Simple parent reflection</span>
+        <span><OutlineIcon name="check-circle" size={16} /> Instant result teaser</span>
+        <span><OutlineIcon name="wallet" size={16} /> Direct path to reserve {webinarConfig.displayPrice}</span>
+      </div>
+    </div>
+
+    <form class="mini-quiz-card" data-mini-quiz novalidate>
+      <label>
+        <span>1. Which school tasks feel most natural to your child?</span>
+        <select name="strength" required>
+          <option value="">Choose one</option>
+          <option value="analytical">Solving logic, maths, or technical problems</option>
+          <option value="creative">Writing, design, expression, or idea-building</option>
+          <option value="people">Discussion, leadership, commerce, or practical coordination</option>
+          <option value="mixed">Mixed signals, still not sure</option>
+        </select>
+      </label>
+      <label>
+        <span>2. Under pressure, your child usually...</span>
+        <select name="pressure" required>
+          <option value="">Choose one</option>
+          <option value="structured">Does better with structure, steps, and clear goals</option>
+          <option value="independent">Needs autonomy and personal working style</option>
+          <option value="collaborative">Learns better through discussion and interaction</option>
+          <option value="mixed">Changes a lot depending on subject and environment</option>
+        </select>
+      </label>
+      <label>
+        <span>3. Most current stream pressure is coming from...</span>
+        <select name="pressure_source" required>
+          <option value="">Choose one</option>
+          <option value="marks">Marks and rank expectations</option>
+          <option value="social">Relatives, school, friends, or coaching influence</option>
+          <option value="unclear">No one is sure what actually fits</option>
+          <option value="conflict">Parent-child disagreement</option>
+        </select>
+      </label>
+      <button type="submit" class="button button-gold">See My Reflection Result</button>
+      <div class="mini-quiz-result" data-mini-quiz-result hidden aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<script is:inline define:vars={{ displayPrice: webinarConfig.displayPrice }}>
+  const quizForm = document.querySelector('[data-mini-quiz]');
+  const quizResult = document.querySelector('[data-mini-quiz-result]');
+
+  const results = {
+    analytical:
+      'You may be seeing an analytical or structured-fit pattern. The webinar will help you test whether that really points toward Science or whether marks are masking a different fit.',
+    creative:
+      'You may be seeing a creative or exploratory-fit pattern. The webinar will help you compare Humanities, Design, Commerce, and mixed pathways without social bias.',
+    people:
+      'You may be seeing a people-oriented or practical-fit pattern. The webinar will help you think through Commerce, communication, business, and applied pathways more clearly.',
+    mixed:
+      'You are seeing mixed signals, which is exactly why a calmer framework matters. The webinar will help you separate marks, pressure, aptitude, and study style before choosing a stream.',
+  };
+
+  quizForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!quizForm.reportValidity()) {
+      return;
+    }
+
+    const formData = new FormData(quizForm);
+    const primarySignal = formData.get('strength');
+    const message = results[primarySignal] || results.mixed;
+
+    quizResult.hidden = false;
+    quizResult.innerHTML = `
+      <strong>Reflection teaser</strong>
+      <p>${message}</p>
+      <a href="#webinar-form" class="button button-gold" data-track-event="quiz_cta_click" data-track-placement="mini-quiz">
+        Reserve My Seat for ${displayPrice}
+      </a>
+    `;
+
+    window.trackLandingEvent?.('mini_quiz_submit', {
+      strength: formData.get('strength'),
+      pressure: formData.get('pressure'),
+      pressureSource: formData.get('pressure_source'),
+    });
+  });
+</script>

@@ -152,3 +152,45 @@ export const listLeadsPendingReminder = async (db, fieldName) => {
     .all();
   return result.results ?? [];
 };
+
+export const listAdminLeads = async (db, limit = 200) => {
+  const cappedLimit = Math.max(1, Math.min(Number(limit) || 200, 500));
+  const result = await db
+    .prepare(
+      `SELECT
+         id,
+         parent_name,
+         email,
+         whatsapp,
+         child_class,
+         area_locality,
+         biggest_concern,
+         payment_status,
+         payment_provider,
+         provider_order_id,
+         provider_payment_id,
+         created_at,
+         payment_started_at,
+         payment_completed_at,
+         updated_at
+       FROM webinar_leads
+       ORDER BY id DESC
+       LIMIT ?`
+    )
+    .bind(cappedLimit)
+    .all();
+
+  return result.results ?? [];
+};
+
+export const getLeadStatusCounts = async (db) => {
+  const result = await db
+    .prepare(
+      `SELECT payment_status, COUNT(*) AS count
+       FROM webinar_leads
+       GROUP BY payment_status`
+    )
+    .all();
+
+  return result.results ?? [];
+};

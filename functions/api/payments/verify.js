@@ -44,7 +44,7 @@ export async function onRequestPost({ request, env }) {
     {
       ok: true,
       paymentStatus: 'paid',
-      message: `Your seat for the ${webinarConfig.dateLabel} webinar is confirmed. The Google Meet link will be sent on WhatsApp after payment processing completes.`,
+      message: `Your webinar seat is confirmed. We have received your ${webinarConfig.displayPrice} payment. Your webinar confirmation and joining details will be sent to your WhatsApp number.`,
     },
     { headers: noStoreHeaders }
   );
