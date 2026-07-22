@@ -130,3 +130,28 @@
     transform: none;
   }
 }
+
+/* Hero bold emphasis */
+.hero-bold {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* Hero italic */
+.hero-italic {
+  font-style:italic;
+}
+
+/* Hero underline */
+.hero-underline {
+  text-decoration: underline;
+}
+
+/* Highlight warning text */
+.highlight-warning {
+  color: var(--gold);
+  font-weight: 600;
+   text-decoration: italic;
+  /* text-decoration: underline; */
+  /* text-underline-offset: 3px; */
+}

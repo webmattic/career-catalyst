@@ -24,9 +24,9 @@ export const upiPaymentConfig = {
   payeeName: 'Pragnya Consultancy',
   purpose: 'Pragnya Stream Clarity Webinar',
   webinarDateTime: webinarConfig.preferredBatchLabel,
-  // TODO: Replace with final verified Pragnya Consultancy UPI QR before production launch.
-  qrImagePath: '/images/payments/pragnya-upi-qr.png',
-  qrReady: false,
+  // UPI QR Code for payment
+  qrImagePath: '/images/Mehal-QRCode.webp',
+  qrReady: true,
 };
 
 export const biggestConcernOptions = [
