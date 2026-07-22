@@ -9,6 +9,11 @@
   color: #ffffff;
 }
 
+.final-cta-preheading{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .final-cta-section::before {
   position: absolute;
   inset: 0;

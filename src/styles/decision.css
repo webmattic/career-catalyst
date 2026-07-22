@@ -26,3 +26,8 @@
   background: var(--gold);
   content: "";
 }
+
+.decision-emphasis{
+  font-weight: bold;
+  text-decoration: underline;
+}
