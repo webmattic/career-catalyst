@@ -107,6 +107,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           placement: trigger.dataset.trackPlacement || 'unknown',
         });
       });
+
+      /* GA4 CTA click tracking via data-cta-location */
+      document.addEventListener('click', function (event) {
+        var ctaElement = event.target.closest('[data-cta-location]');
+        if (!ctaElement) return;
+        var location = ctaElement.getAttribute('data-cta-location');
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'cta_click', { button_location: location });
+        }
+      });
+
+      /* GA4 Registration Form tracking */
+      (function () {
+        var webinarForm = document.getElementById('registration-form');
+        if (!webinarForm) return;
+        var form = webinarForm.querySelector('form');
+        if (!form) return;
+        var formStartFired = false;
+
+        form.addEventListener('focusin', function () {
+          if (formStartFired) return;
+          formStartFired = true;
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'form_start', { form_id: 'webinar-form' });
+          }
+        });
+
+        form.addEventListener('submit', function () {
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'webinar_form_submit', { form_id: 'webinar-form' });
+          }
+        });
+      })();
     </script>
   </body>
 </html>
