@@ -7,7 +7,6 @@ interface Props {
 }
 
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? 'G-YD1JPD4YMD';
-const gtmId = import.meta.env.PUBLIC_GTM_ID ?? '';
 const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '';
 const { title = "Pragnya Consultancy - ₹99 Stream Clarity Webinar", description = "A practical ₹99 webinar for Mumbai parents who want to choose the right stream using aptitude, personality, interest, and learning-style signals." } = Astro.props;
 ---
@@ -16,6 +15,13 @@ const { title = "Pragnya Consultancy - ₹99 Stream Clarity Webinar", descriptio
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NTBH2GRG');</script>
+    <!-- End Google Tag Manager -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -28,19 +34,7 @@ const { title = "Pragnya Consultancy - ₹99 Stream Clarity Webinar", descriptio
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="image" type="image/webp" href="/images/webinar-3.webp" />
     <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    {gtmId && (
-      <script is:inline define:vars={{ gtmId }}>
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          'gtm.start': new Date().getTime(),
-          event: 'gtm.js',
-        });
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
-        document.head.appendChild(script);
-      </script>
-    )}
+
     {gaMeasurementId && (
       <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
     )}
@@ -80,6 +74,10 @@ const { title = "Pragnya Consultancy - ₹99 Stream Clarity Webinar", descriptio
     <title>{title}</title>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NTBH2GRG"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <slot />
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
